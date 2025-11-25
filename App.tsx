@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import About from './components/About';
 import LifeSnapshots from './components/LifeSnapshots';
-import Portrait from './components/Portrait';
 import Contact from './components/Contact';
 import BackgroundAnimation from './components/BackgroundAnimation';
 import CaseStudy from './components/CaseStudy';
@@ -87,7 +86,6 @@ function App() {
           <Projects onCaseStudyClick={handleCaseStudyClick} />
           <About />
           <LifeSnapshots />
-          <Portrait />
         </main>
       ) : (
         selectedProject && (

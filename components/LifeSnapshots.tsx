@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Using Unsplash images to match the aesthetic (Corgis, Travel, Lifestyle)
 const snapshots = [
@@ -16,6 +16,38 @@ const snapshots = [
   "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=800&auto=format&fit=crop", // City street
   "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop", // Dog
 ];
+
+const SnapshotItem: React.FC<{ src: string; index: number }> = ({ src, index }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: (index % 4) * 0.1 }} // Stagger based on column
+      className="aspect-square overflow-hidden rounded-xl relative group cursor-pointer"
+    >
+      <motion.div style={{ y, scale: 1.1 }} className="w-full h-full">
+        <img 
+          src={src} 
+          alt={`Life snapshot ${index + 1}`} 
+          className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+          loading="lazy"
+        />
+      </motion.div>
+      {/* Subtle overlay */}
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+    </motion.div>
+  );
+};
 
 const LifeSnapshots: React.FC = () => {
   return (
@@ -39,23 +71,7 @@ const LifeSnapshots: React.FC = () => {
           <div className="lg:w-2/3">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {snapshots.map((src, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="aspect-square overflow-hidden rounded-xl relative group cursor-pointer"
-                >
-                  <img 
-                    src={src} 
-                    alt={`Life snapshot ${index + 1}`} 
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  {/* Subtle overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                </motion.div>
+                <SnapshotItem key={index} src={src} index={index} />
               ))}
             </div>
           </div>

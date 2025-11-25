@@ -156,7 +156,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isHome = true }) => {
 
           <div className="flex items-center space-x-6">
             <a 
-              href="https://www.linkedin.com/in/kylekhiemnguyen" 
+              href="https://www.linkedin.com/in/kylekhiemnguyen/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-secondary hover:text-white transition-colors duration-300"
@@ -240,7 +240,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isHome = true }) => {
                   className="flex items-center space-x-8 mt-8 pt-8 border-t border-white/10 w-40 justify-center"
                 >
                   <a 
-                    href="https://www.linkedin.com/in/kylekhiemnguyen" 
+                    href="https://www.linkedin.com/in/kylekhiemnguyen/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-white/50 hover:text-white transition-colors duration-300"

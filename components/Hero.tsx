@@ -1,12 +1,23 @@
+
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
+import SnowEffect from './SnowEffect';
 
 const Hero: React.FC = () => {
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const y = useTransform(scrollY, [0, 400], [0, 100]);
+
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 relative overflow-hidden bg-transparent">
+      
+      {/* Abstract Snow Animation */}
+      <SnowEffect />
+
       <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
+          style={{ opacity, y }}
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -26,6 +37,7 @@ const Hero: React.FC = () => {
       </div>
 
       <motion.div 
+        style={{ opacity }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}

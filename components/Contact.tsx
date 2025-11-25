@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { SocialLink } from '../types';
 
 const socials: SocialLink[] = [
-  { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/kylekhiemnguyen', handle: 'linkedin.com/in/kylekhiemnguyen' },
+  { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/kylekhiemnguyen/', handle: 'linkedin.com/in/kylekhiemnguyen' },
   { platform: 'Instagram', url: 'https://www.instagram.com/narcissistic_uncle', handle: '@narcissistic_uncle' },
 ];
 
