@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
             <span className="text-secondary/80">complex</span> stuff
           </h1>
           <p className="max-w-xl text-secondary text-lg md:text-xl leading-relaxed">
-            I love making sense out of complex systems and processes through the creation of delightful, intuitive, and functional experiences.
+            I love making sense out of technical systems and processes through the creation of delightful, intuitive, and functional experiences.
           </p>
         </motion.div>
       </div>
@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer z-10"
         onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
       >
-        <span className="text-xs uppercase tracking-widest text-secondary">Scroll</span>
+        <span className="text-xs uppercase tracking-widest text-secondary">See my work</span>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
