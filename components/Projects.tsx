@@ -25,7 +25,7 @@ const projects: Project[] = [
     id: '3',
     title: 'Domino AI',
     category: '',
-    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764133808/domino_q2opts.png',
+    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764139578/domino_ivfaiz.png',
     year: '2023',
     description: 'Managing environments on Domino AI Platform.'
   }
