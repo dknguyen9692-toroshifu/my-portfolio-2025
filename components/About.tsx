@@ -71,7 +71,7 @@ const About: React.FC = () => {
                  
                  <div className="mt-16">
                    <a 
-                     href="/resume.pdf" 
+                     href="https://drive.google.com/file/d/13CJxZeaxI_J2mftxnMCb6Avw0kR5L2Jk/view?usp=sharing" 
                      target="_blank"
                      rel="noopener noreferrer"
                      className="inline-flex items-center gap-3 px-8 py-3 border border-white/20 rounded-full text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 group"
