@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
@@ -13,12 +14,13 @@ const experiences = [
 const About: React.FC = () => {
   return (
     <section id="about" className="py-24 md:py-40 px-6 md:px-12 bg-transparent relative z-10 overflow-hidden">
+      
       {/* Decorative large text background */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 opacity-[0.03] select-none pointer-events-none">
         <span className="text-[20rem] md:text-[40rem] font-serif font-extrabold leading-none">KN</span>
       </div>
 
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-4xl relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           
           <div className="md:col-span-4">
@@ -69,7 +71,9 @@ const About: React.FC = () => {
                  
                  <div className="mt-16">
                    <a 
-                     href="#" 
+                     href="/resume.pdf" 
+                     target="_blank"
+                     rel="noopener noreferrer"
                      className="inline-flex items-center gap-3 px-8 py-3 border border-white/20 rounded-full text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 group"
                    >
                      SEE FULL RESUME

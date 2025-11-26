@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import SnowEffect from './SnowEffect';
+import SoundWave from './SoundWave';
 
 const Hero: React.FC = () => {
   const { scrollY } = useScroll();
@@ -12,8 +12,8 @@ const Hero: React.FC = () => {
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 relative overflow-hidden bg-transparent">
       
-      {/* Abstract Snow Animation */}
-      <SnowEffect />
+      {/* Sound Wave Animation - High Intensity for Hero */}
+      <SoundWave lineCount={80} opacity={0.6} speed={0.003} />
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
           <h1 className="font-serif text-4xl md:text-6xl lg:text-8xl font-bold leading-[1.1] text-primary mb-8 tracking-tight">
             I'm a designer <br />
             with a passion for <br />
-            <span className="text-secondary/80">complex</span> stuff
+            <span className="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">complex</span> stuff
           </h1>
           <p className="max-w-xl text-secondary text-lg md:text-xl leading-relaxed">
             I love making sense out of technical systems and processes through the creation of delightful, intuitive, and functional experiences.

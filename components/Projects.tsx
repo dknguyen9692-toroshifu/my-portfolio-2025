@@ -9,7 +9,7 @@ const projects: Project[] = [
     id: '1',
     title: 'TikTok',
     category: '',
-    image: 'https://i.postimg.cc/J4mFRWx7/tiktok.jpg', 
+    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764132458/tiktok_qjyhje.png', 
     year: '2025',
     description: "Bringing agentic AI to the finger tips of TikTok's global sales teams (coming soon)."
   },
@@ -17,7 +17,7 @@ const projects: Project[] = [
     id: '2',
     title: 'Salesforce',
     category: '',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&h=1000&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764132665/salesforce_zftcfi.png',
     year: '2021 — 2022',
     description: "Mulesoft's next-gen network monitoring experience."
   },
@@ -25,17 +25,9 @@ const projects: Project[] = [
     id: '3',
     title: 'Domino AI',
     category: '',
-    image: 'https://images.unsplash.com/photo-1629752187687-3d3c7ea3a21b?q=80&w=1600&h=1000&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764133808/domino_q2opts.png',
     year: '2023',
-    description: 'Managing environments on Domino Data Platform.'
-  },
-  {
-    id: '4',
-    title: 'Oracle Cloud',
-    category: '',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&h=1000&auto=format&fit=crop',
-    year: '2019 — 2020',
-    description: 'Securing the Oracle Cloud.'
+    description: 'Managing environments on Domino AI Platform.'
   }
 ];
 
@@ -77,8 +69,8 @@ const ProjectItem: React.FC<{
              <img 
               src={project.image} 
               alt={project.title}
-              width={1600}
-              height={1000}
+              width={2560} // Explicit high resolution width
+              height={1600} // Explicit high resolution height
               className="w-full h-full object-cover transition-all duration-700 ease-out hover:opacity-90 group-hover:scale-105"
             />
           </motion.div>

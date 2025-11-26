@@ -3,18 +3,18 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Using Unsplash images to match the aesthetic (Corgis, Travel, Lifestyle)
 const snapshots = [
-  "https://images.unsplash.com/photo-1612536053388-75b9d2e05a8d?q=80&w=800&auto=format&fit=crop", // Corgi / Dog
-  "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=800&auto=format&fit=crop", // Forest / Hiking
-  "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=800&auto=format&fit=crop", // Music / Guitar
-  "https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=800&auto=format&fit=crop", // Travel / Architecture
-  "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop", // Another Dog
-  "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800&auto=format&fit=crop", // Coffee / Lifestyle
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop", // Nature
-  "https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop", // Camera / Photography
-  "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop", // Mountains
-  "https://images.unsplash.com/photo-1534067783741-5127692bb454?q=80&w=800&auto=format&fit=crop", // Beach
-  "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=800&auto=format&fit=crop", // City street
-  "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop", // Dog
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135146/snapshot12_bh3y6r.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135145/snapshot11_dnipfn.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135144/snapshot9_be6em2.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135144/snapshot10_cwlski.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135144/snapshot8_clpvb9.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135044/snapshot7_roweue.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135039/snapshot6_xshmhq.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135038/snapshot5_wqesut.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135037/snapshot4_lhveck.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135037/snapshot3_a05lvd.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135036/snapshot2_lvbdk3.jpg", 
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135036/snapshot1_o7irp7.jpg", 
 ];
 
 const SnapshotItem: React.FC<{ src: string; index: number }> = ({ src, index }) => {
