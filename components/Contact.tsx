@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
               Let's <span className="text-secondary">chat.</span>
             </h2>
             <p className="text-secondary text-lg max-w-md mb-12 font-light">
-              Topics that intrigue me include AI-human interactions, user experience, career growth, Arsenal, travel (Japan in particular), and (please) good wine and food. Perhaps you want to collaborate on an exciting project together? Just give me a shout!
+              Topics that intrigue me include AI-human interactions, user experience, career growth, Arsenal, travel (Japan in particular), watches, and (please) good wine and food. Perhaps you want to collaborate on an exciting project together? Just give me a shout!
             </p>
             
             <a 
