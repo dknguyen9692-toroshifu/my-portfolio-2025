@@ -1,7 +1,8 @@
+
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
-import { Project } from '../types';
+import { Project, ContentBlock } from '../types';
 
 interface CaseStudyProps {
   project: Project;
@@ -12,6 +13,146 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Safe fallback if caseStudyData is missing
+  const contentData = project.caseStudyData || {
+    role: "Product Designer",
+    product: project.category,
+    team: "Design & Engineering",
+    content: []
+  };
+
+  const formatText = (text: string) => {
+    if (!text) return null;
+
+    // Regex to match **bold** OR *italic*
+    // Note: The order matters. Check for ** first.
+    const regex = /(\*\*.*?\*\*)|(\*.*?\*)/g;
+    
+    const parts = text.split(regex).filter(part => part !== undefined && part !== '');
+    
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i} className="font-bold text-white">{part.slice(2, -2)}</strong>;
+      }
+      if (part.startsWith('*') && part.endsWith('*')) {
+        return <em key={i} className="italic">{part.slice(1, -1)}</em>;
+      }
+      return part;
+    });
+  };
+
+  const renderBlock = (block: ContentBlock) => {
+    switch (block.type) {
+      case 'text':
+        return (
+          <motion.section 
+            key={block.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-12 gap-6 md:gap-12 mb-20"
+          >
+            <div className="md:col-span-4">
+              {block.title && (
+                <h3 className="text-2xl text-white font-bold font-serif sticky top-32">{block.title}</h3>
+              )}
+            </div>
+            <div className="md:col-span-8 space-y-6">
+              {block.paragraphs.map((paragraph, index) => (
+                <p key={index} className="text-secondary text-lg leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </motion.section>
+        );
+      
+      case 'image':
+        return (
+          <motion.div 
+            key={block.id}
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="rounded-xl overflow-hidden aspect-video bg-surface relative mb-20"
+          >
+             <img 
+               src={block.src} 
+               alt={block.alt || 'Case study detail'} 
+               className="w-full h-full object-cover"
+             />
+             {block.caption && (
+               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                 <p className="text-white/70 text-xs uppercase tracking-widest">{block.caption}</p>
+               </div>
+             )}
+          </motion.div>
+        );
+
+      case 'list':
+        const isNumbered = block.style === 'numbered';
+        const ListTag = isNumbered ? 'ol' : 'ul';
+        const listClass = isNumbered ? 'list-decimal' : 'list-disc';
+
+        return (
+           <motion.section 
+            key={block.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-12 gap-6 md:gap-12 mb-20"
+          >
+            <div className="md:col-span-4">
+               {block.title && (
+                <h3 className="text-xl text-white font-bold font-serif sticky top-32">{block.title}</h3>
+              )}
+            </div>
+            <div className="md:col-span-8">
+               {block.intro && (
+                <p className="text-secondary text-lg mb-6 leading-relaxed whitespace-pre-line">
+                  {block.intro}
+                </p>
+               )}
+               <ListTag className={`${listClass} list-outside text-secondary space-y-4 ml-4`}>
+                {block.items.map((item, index) => {
+                  if (typeof item === 'string') {
+                    return <li key={index} className="pl-2 leading-relaxed text-lg">{item}</li>;
+                  } else {
+                     return (
+                      <li key={index} className="pl-2 leading-relaxed text-lg">
+                        <span className="block text-white font-medium">{item.label}</span>
+                        
+                        {item.description && (
+                          <p className="text-secondary text-lg mt-1 mb-2 leading-relaxed">{item.description}</p>
+                        )}
+                        
+                        {item.subItems && (
+                          <ul className="list-disc list-outside ml-6 space-y-2 text-lg text-secondary/80 mt-2">
+                            {item.subItems.map((sub, subIdx) => (
+                              <li key={subIdx} className="pl-2">{sub}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                     );
+                  }
+                })}
+              </ListTag>
+              {block.conclusion && (
+                <p className="text-secondary text-lg mt-8 leading-relaxed whitespace-pre-line">
+                  {formatText(block.conclusion)}
+                </p>
+              )}
+            </div>
+          </motion.section>
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="relative z-10 bg-background min-h-screen pb-24">
@@ -60,81 +201,32 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
       </motion.div>
 
       {/* Content Body */}
-      <div className="container mx-auto max-w-4xl px-6 md:px-12 py-24 md:py-32 space-y-24">
+      <div className="container mx-auto max-w-6xl px-6 md:px-12">
         
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-white/10 py-12">
+        {/* Stats Grid - Constrained to max-w-4xl to match content below */}
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 border-y border-white/10 py-12 mt-20 md:mt-32 mb-32">
           <div>
             <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Role</h4>
-            <p className="text-white font-medium">Product Design</p>
+            <p className="text-white font-medium">{contentData.role}</p>
           </div>
           <div>
             <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Year</h4>
             <p className="text-white font-medium">{project.year}</p>
           </div>
           <div>
-            <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Platform</h4>
-            <p className="text-white font-medium">Web & Mobile</p>
+            <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Product</h4>
+            <p className="text-white font-medium">{contentData.product}</p>
           </div>
           <div>
             <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Team</h4>
-            <p className="text-white font-medium">Design & Eng</p>
+            <p className="text-white font-medium">{contentData.team}</p>
           </div>
         </div>
 
-        {/* Challenge Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-12 gap-12"
-        >
-          <div className="md:col-span-4">
-            <h3 className="text-2xl text-white font-bold font-serif">The Challenge</h3>
-          </div>
-          <div className="md:col-span-8">
-            <p className="text-secondary text-lg leading-relaxed mb-6">
-              In a rapidly evolving digital landscape, {project.title} needed a solution that would not only address immediate operational inefficiencies but also scale for future growth. The existing systems were fragmented, leading to data silos and a disjointed user experience.
-            </p>
-            <p className="text-secondary text-lg leading-relaxed">
-              Our primary goal was to unify these disparate workflows into a cohesive, intuitive interface that empowered users to make data-driven decisions with confidence and speed.
-            </p>
-          </div>
-        </motion.section>
-
-        {/* Large Detail Image */}
-        <div className="rounded-xl overflow-hidden aspect-video bg-surface relative">
-           <img 
-             src={`https://picsum.photos/1200/800?random=${project.id}b`} 
-             alt="Interface Detail" 
-             className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
-           />
+        {/* Dynamic Content Blocks */}
+        <div className="max-w-4xl mx-auto">
+          {contentData.content.map(block => renderBlock(block))}
         </div>
-
-        {/* Solution Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-12 gap-12"
-        >
-          <div className="md:col-span-4">
-            <h3 className="text-2xl text-white font-bold font-serif">The Solution</h3>
-          </div>
-          <div className="md:col-span-8">
-            <p className="text-secondary text-lg leading-relaxed mb-6">
-              We approached the problem by adopting a user-centric design methodology. Through extensive research and prototyping, we identified key friction points and reimagined the core navigation structure.
-            </p>
-            <ul className="list-disc list-inside text-secondary space-y-4 mb-6 ml-4">
-              <li>Streamlined dashboard for real-time analytics.</li>
-              <li>Modular component architecture for consistent UI.</li>
-              <li>Enhanced accessibility compliance (WCAG 2.1 AA).</li>
-            </ul>
-            <p className="text-secondary text-lg leading-relaxed">
-              The final delivery resulted in a 40% increase in user engagement and a significant reduction in task completion time.
-            </p>
-          </div>
-        </motion.section>
 
       </div>
     </div>
