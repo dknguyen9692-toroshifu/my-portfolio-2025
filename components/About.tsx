@@ -77,7 +77,7 @@ const About: React.FC = () => {
                      className="inline-flex items-center gap-3 px-8 py-3 border border-white/20 rounded-full text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 group"
                    >
                      SEE FULL RESUME
-                     <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                     <ArrowUpRight size={16} className="text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                    </a>
                  </div>
 

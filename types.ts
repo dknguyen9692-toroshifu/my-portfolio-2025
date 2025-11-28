@@ -16,7 +16,7 @@ export interface WatchStory {
 
 // --- Content Block Types for Flexible Case Studies ---
 
-export type BlockType = 'text' | 'image' | 'list';
+export type BlockType = 'text' | 'image' | 'list' | 'testimonial' | 'stats';
 
 export interface BaseBlock {
   type: BlockType;
@@ -34,6 +34,7 @@ export interface ImageBlock extends BaseBlock {
   src: string;
   alt?: string;
   caption?: string;
+  imageStyle?: 'default' | 'full' | 'tall'; // 'default' = aspect-video crop, 'full' = natural height, 'tall' = 4:3
 }
 
 export interface ListBlock extends BaseBlock {
@@ -44,7 +45,28 @@ export interface ListBlock extends BaseBlock {
   conclusion?: string; // Optional closing text for the list section
 }
 
-export type ContentBlock = TextBlock | ImageBlock | ListBlock;
+export interface TestimonialBlock extends BaseBlock {
+  type: 'testimonial';
+  intro?: string; // Optional intro text before quotes
+  items: {
+    quote: string;
+    body: string;
+  }[];
+}
+
+export interface StatsBlock extends BaseBlock {
+  type: 'stats';
+  intro?: string;
+  items: {
+    value: string;
+    label: string;
+    category: string;
+    trend?: 'up' | 'down';
+  }[];
+  conclusion?: string;
+}
+
+export type ContentBlock = TextBlock | ImageBlock | ListBlock | TestimonialBlock | StatsBlock;
 
 export interface CaseStudyData {
   role: string;

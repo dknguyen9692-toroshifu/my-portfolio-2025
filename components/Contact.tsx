@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { SocialLink } from '../types';
@@ -26,7 +27,7 @@ const Contact: React.FC = () => {
               className="inline-flex items-center gap-4 text-xl md:text-3xl text-primary border-b border-white/20 pb-2 hover:border-white transition-all duration-300 group font-medium"
             >
               dknguyen.9692@gmail.com
-              <ArrowRight className="transform group-hover:translate-x-2 transition-transform duration-300" />
+              <ArrowRight className="text-white transform group-hover:translate-x-2 transition-transform duration-300" />
             </a>
           </div>
 

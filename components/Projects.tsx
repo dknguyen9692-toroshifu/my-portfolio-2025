@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Watch, X, MapPin, Camera } from 'lucide-react';
+import { ArrowUpRight, Watch, X, MapPin, Camera, ArrowUp, ArrowDown } from 'lucide-react';
 import { Project, WatchStory } from '../types';
 
 // Updated Data with Timeline Order and Watches
@@ -111,10 +111,18 @@ const projects: Project[] = [
           title: 'The problem',
           intro: "Environments in Domino are essentially abstracted Docker images - versioned, shareable templates that power every unit of execution on the platform. They’re central to reproducibility and collaboration.\n\nBut the product experience around them wasn’t built for how users actually worked.",
           items: [
-            "It assumed users already knew exactly which environment they needed. Many didn’t.",
-            "The list view had almost no metadata or filtering, so browsing or comparing environments was basically impossible.",
-            "The creation flow lived inside a cramped modal, which led to accidental environment creation and a very unclear mental model of “basic” vs. “advanced” configuration.",
-            "The three major creation paths — Python packages, requirements/Conda files, and Dockerfiles — weren’t surfaced in a way that matched real user needs."
+            {
+                label: "It assumed users already knew exactly which environment they needed. Many didn’t."
+            },
+            {
+                label: "The list view had almost no metadata or filtering, so browsing or comparing environments was basically impossible."
+            },
+            {
+                label: "The creation flow lived inside a cramped modal, which led to accidental environment creation and a very unclear mental model of “basic” vs. “advanced” configuration."
+            },
+            {
+                label: "The three major creation paths — Python packages, requirements/Conda files, and Dockerfiles — weren’t surfaced in a way that matched real user needs."
+            }
           ],
           conclusion: "Across customer conversations, the same patterns repeated: confusion, friction, and unnecessary complexity."
         },
@@ -122,6 +130,7 @@ const projects: Project[] = [
           id: 'insights',
           type: 'list',
           title: 'Research insights',
+          intro: "Through user interviews and contextual inquiries, we understood that:",
           items: [
             "Users often didn’t know where to start — they needed the ability to browse, compare, and explore environments.",
             "requirements.txt / Conda-based setups were actually the most common workflow, yet the product treated them as “advanced.”",
@@ -221,7 +230,8 @@ const projects: Project[] = [
           type: 'text',
           title: 'Overview',
           paragraphs: [
-            "Mulesoft helps large enterprises integrate massive, scattered data systems. The original Anypoint Monitoring (1.0) wasn’t meeting business goals - users couldn’t see network-wide performance, troubleshooting was slow, and the product felt disconnected from the rest of the platform. My job was to redesign it so DevOps engineers could actually detect, investigate, and resolve issues effectively.",
+            "Mulesoft helps large enterprises integrate massive, scattered data systems. The original Anypoint Monitoring (1.0) wasn’t meeting business goals - users couldn’t see network-wide performance, troubleshooting was slow, and the product felt disconnected from the rest of the platform.",
+            "My job was to redesign it so DevOps engineers could actually detect, investigate, and resolve issues effectively."
           ]
         },
         {
@@ -239,8 +249,20 @@ const projects: Project[] = [
               label: "Incomplete troubleshooting tools.",
               description: "DevOps needs metrics, logs, and traces. Anypoint Monitoring 1.0 only provided metrics and logs — and only for one service at a time."
             }
-          ],
-          conclusion: "These gaps directly impacted time to detection, time to identification, and time to resolution."
+          ]
+        },
+        {
+          id: 'problem-visual',
+          type: 'image',
+          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764303299/no-traces_ncx74d.png',
+          imageStyle: 'full',
+        },
+        {
+          id: 'problem-conclusion',
+          type: 'text',
+          paragraphs: [
+            "These gaps directly impacted time to issue detection, identification, and resolution."
+          ]
         },
         {
           id: 'deliverables',
@@ -253,6 +275,18 @@ const projects: Project[] = [
             "A North Star prototype that defined the future-state experience and got leadership buy-in."
           ],
           conclusion: "Once aligned, we focused on the highest-impact goal: *help DevOps engineers resolve issues faster.*"
+        },
+        {
+          id: 'deliverables-journey',
+          type: 'image',
+          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764310292/journey_h6by5u.png',
+          imageStyle: 'full',
+        },
+        {
+          id: 'deliverables-storyboard',
+          type: 'image',
+          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764303672/storyboard_zj9cgz.png',
+          imageStyle: 'full',
         },
         {
           id: 'solutions',
@@ -285,20 +319,63 @@ const projects: Project[] = [
             }
           ]
         },
+        // 14 Placeholder Images
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764312066/sfanypoint_1_oednsd.png', caption: 'Network dashboard' },
+        
         {
           id: 'impact',
-          type: 'list',
+          type: 'stats',
           title: 'Impact',
           intro: "The redesign directly targeted the key business, product, and experience-level KPIs:",
           items: [
-            "Revenue uplift",
-            "Faster issue detection.",
-            "Faster root-cause identification.",
-            "Faster resolution.",
-            "Higher monthly active usage.",
-            "Better CSAT."
+            {
+              value: "Revenue",
+              label: "Designs helped secured important contract renewals",
+              category: "Business",
+              trend: 'up'
+            },
+            {
+              value: "~34%",
+              label: "Reduction in avg. time to resolve an issue",
+              category: "Product",
+              trend: 'down'
+            },
+            {
+              value: "~24%",
+              label: "Increase in monthly active user rate",
+              category: "Product",
+              trend: 'up'
+            },
+            {
+              value: "2 → 4.5",
+              label: "Boosted avg. CSAT score significantly",
+              category: "Experience"
+            }
           ],
-          conclusion: "Most importantly, the new design shifted Anypoint Monitoring from a single-entity tool to a **network-first, user-centered observability experience.**\n\nPlease contact me directly for more deep dives into key success metrics!"
+          conclusion: "Most importantly, the new design shifted Anypoint Monitoring from a single-entity tool to a **network-first, user-centered observability experience.**"
+        },
+        {
+          id: 'validation',
+          type: 'testimonial',
+          title: 'Qualitative validation',
+          intro: "For me, nevertheless, the best kind of validation is always the direct feedback coming from our users and customers. Many of whom told us that the redesigned experience truly made troubleshooting significantly faster and more intuitive for their teams.",
+          items: [
+            {
+              quote: "“I love the flexibility of the Entities Search Query...",
+              body: "...with the search query it’s so much easier for me to drill-down into my network and identify critical signals that can help me with my troubleshooting.”"
+            },
+            {
+              quote: "“The product is aiding me debug a lot quicker...",
+              body: "...by providing metrics and logs-level data right in-context of the apps & APIs I’m investigating. The UI visual signals are also a game-changer! These factors all really streamlined the workflow so I don’t have to keep digging around the system to gather such data.”"
+            }
+          ]
+        },
+        {
+          id: 'contact-info',
+          type: 'text',
+          paragraphs: [
+            "Please contact me directly for more deep dives into key success metrics!"
+          ]
         }
       ]
     }
@@ -454,6 +531,7 @@ const ProjectItem: React.FC<{
 }> = ({ project, index, onCaseStudyClick, onWatchClick, setHoveredProject }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isWatchHovered, setIsWatchHovered] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -472,7 +550,7 @@ const ProjectItem: React.FC<{
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.8 }}
-        className="flex flex-col gap-6 group cursor-pointer"
+        className={`flex flex-col gap-6 cursor-pointer ${!isWatchHovered ? 'group' : ''}`}
         onMouseEnter={() => setHoveredProject(project.id)}
         onMouseLeave={() => setHoveredProject(null)}
         onClick={() => onCaseStudyClick(project)}
@@ -491,102 +569,99 @@ const ProjectItem: React.FC<{
                <img 
                 src={project.image} 
                 alt={project.title}
-                className={`w-full h-full object-cover transition-all duration-700 ease-out hover:opacity-90 ${!isWatchHovered ? 'group-hover:scale-105' : ''}`}
+                className="w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
             </motion.div>
-            <div className={`absolute inset-0 bg-black/10 transition-colors duration-500 ${!isWatchHovered ? 'group-hover:bg-transparent' : ''}`} />
           </div>
         </div>
 
-        {/* Text Content - Rearranged */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-12">
-          <div className="md:w-1/2">
-            <div className="flex flex-col gap-1 mb-2">
-              <h3 className="font-serif text-4xl md:text-5xl text-primary font-bold tracking-tight group-hover:text-white transition-colors">
-                {project.title}
-              </h3>
-               <span className="text-secondary/50 text-sm uppercase tracking-wider">{project.category}</span>
-            </div>
-          </div>
-          
-          <div className="md:w-1/2 flex flex-col items-start md:items-end">
-            <p className="text-secondary leading-relaxed mb-6 max-w-md text-lg md:text-xl font-light md:text-right">
+        {/* Content Info */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-12 md:items-end">
+          <div className="flex-1">
+            <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-2 group-hover:text-white transition-colors duration-300">
+              {project.title}
+            </h3>
+            <span className="text-xs uppercase tracking-widest text-secondary/70 mb-4 block">
+              {project.category}
+            </span>
+            <p className="text-secondary/80 max-w-xl text-lg leading-relaxed font-light group-hover:text-secondary transition-colors duration-300">
               {project.description}
             </p>
+          </div>
 
-            {/* Actions Area */}
-            <div className="flex flex-col items-end gap-3">
-                <button 
-                  className="flex items-center gap-2 text-primary text-xs uppercase tracking-widest group/btn hover:text-white transition-colors w-max border-b border-transparent hover:border-white/20 pb-1"
-                >
-                  See Case Study
-                  <ArrowUpRight size={14} className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                </button>
+          <div className="flex flex-col items-end gap-6 shrink-0">
+             {/* Primary Action: Case Study */}
+             <div className="flex items-center gap-2 text-white border-b border-white/30 pb-1 group-hover:border-white transition-all duration-300">
+                <span className="text-xs font-bold uppercase tracking-widest">See Case Study</span>
+                <ArrowUpRight size={14} className="text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+             </div>
 
-                {/* Secondary Watch CTA */}
-                {project.watches && (
-                    <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onWatchClick(project);
-                        }}
-                        onMouseEnter={() => setIsWatchHovered(true)}
-                        onMouseLeave={() => setIsWatchHovered(false)}
-                        className="flex items-center gap-2 text-secondary hover:text-white transition-all duration-300 mt-2 group/watch px-3 py-1.5 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 shadow-sm"
-                    >
-                        <Watch size={14} className="group-hover/watch:-rotate-12 transition-transform duration-300" />
-                        <span className="text-[10px] uppercase tracking-widest font-medium">
-                          Timepieces of {project.watchYear || project.year}
-                        </span>
-                    </button>
-                )}
-            </div>
+             {/* Secondary Action: Timepieces - Subtle */}
+             {project.watches && (
+               <button 
+                 onClick={(e) => {
+                   e.stopPropagation();
+                   onWatchClick(project);
+                 }}
+                 onMouseEnter={() => setIsWatchHovered(true)}
+                 onMouseLeave={() => setIsWatchHovered(false)}
+                 className="flex items-center gap-2 px-4 py-2 border border-white/20 rounded-sm hover:bg-white/10 transition-colors duration-300"
+               >
+                 <Watch size={12} className="text-secondary" />
+                 <span className="text-[10px] uppercase tracking-widest text-secondary font-medium">
+                   Timepieces of {project.watchYear || project.year}
+                 </span>
+               </button>
+             )}
           </div>
         </div>
       </motion.div>
     </div>
   );
-}
+};
 
 const Projects: React.FC<ProjectsProps> = ({ onCaseStudyClick }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-  const [activeWatchProject, setActiveWatchProject] = useState<Project | null>(null);
+  const [selectedWatchProject, setSelectedWatchProject] = useState<Project | null>(null);
 
   return (
-    <>
-      <section id="work" className="py-24 md:py-40 bg-white/[0.02] relative z-10 px-6 md:px-12 backdrop-blur-[2px]">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col mb-16 md:mb-24">
-            <h2 className="font-serif text-4xl md:text-6xl text-primary font-bold tracking-tight mb-4">Sample work</h2>
-            <p className="text-secondary text-lg max-w-2xl leading-relaxed">
-              Below are some of my most memorable past works. In addition to user experience design, I am also a passionate watch enthusiast. You can click on the "Timepieces" button under each case study to learn more about the special watches I acquired during that year.
-            </p>
-          </div>
-
-          {/* Timeline Layout */}
-          <div className="relative border-l border-white/10 ml-3 md:ml-0 space-y-24 md:space-y-40 py-8">
-            {projects.map((project, index) => (
-              <ProjectItem 
-                key={project.id} 
-                project={project} 
-                index={index} 
-                onCaseStudyClick={onCaseStudyClick}
-                onWatchClick={(p) => setActiveWatchProject(p)}
-                setHoveredProject={setHoveredProject}
-              />
-            ))}
-          </div>
+    <section id="work" className="py-24 md:py-40 bg-transparent relative z-10">
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+        
+        <div className="mb-20 md:mb-32">
+          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl text-primary font-bold mb-8 tracking-tight">
+            Sample work
+          </h2>
+          <p className="text-secondary text-lg md:text-xl max-w-2xl leading-relaxed font-light">
+            A few selected projects where I tackled technical ambiguity and simplified complex workflows. In addition to product & UX design, I'm also a big enthusiast for mechanical watches. Click on the "Timepiece" button under each case study to learn more about the special watches I bought during that year.
+          </p>
         </div>
-      </section>
 
-      {/* Watch Drawer Overlay */}
-      <WatchDrawer 
-        isOpen={!!activeWatchProject} 
-        onClose={() => setActiveWatchProject(null)} 
-        watches={activeWatchProject?.watches}
-        year={activeWatchProject?.watchYear || activeWatchProject?.year || ''}
-      />
-    </>
+        {/* Timeline Container */}
+        <div className="relative border-l border-white/10 ml-4 md:ml-0 space-y-32 md:space-y-48">
+          {projects.map((project, index) => (
+            <ProjectItem 
+              key={project.id} 
+              project={project} 
+              index={index} 
+              onCaseStudyClick={onCaseStudyClick}
+              onWatchClick={(p) => setSelectedWatchProject(p)}
+              setHoveredProject={setHoveredProject}
+            />
+          ))}
+        </div>
+
+        {/* Watch Details Overlay */}
+        <WatchDrawer 
+          isOpen={!!selectedWatchProject} 
+          onClose={() => setSelectedWatchProject(null)}
+          watches={selectedWatchProject?.watches}
+          year={selectedWatchProject?.watchYear || selectedWatchProject?.year || ''}
+        />
+
+      </div>
+    </section>
   );
 };
 

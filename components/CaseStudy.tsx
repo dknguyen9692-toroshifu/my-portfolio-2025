@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowUp, ArrowDown } from 'lucide-react';
 import { Project, ContentBlock } from '../types';
 
 interface CaseStudyProps {
@@ -69,19 +69,25 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
         );
       
       case 'image':
+        const isFullHeight = block.imageStyle === 'full';
+        const isTall = block.imageStyle === 'tall';
+        let aspectRatioClass = 'aspect-video';
+        if (isFullHeight) aspectRatioClass = '';
+        if (isTall) aspectRatioClass = 'aspect-[4/3]';
+
         return (
           <motion.div 
             key={block.id}
             initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-xl overflow-hidden aspect-video bg-surface relative mb-20"
+            className={`rounded-xl overflow-hidden bg-surface relative mb-12 -mt-6 ${aspectRatioClass}`}
           >
              <img 
                src={block.src} 
                alt={block.alt || 'Case study detail'} 
-               className="w-full h-full object-cover"
+               className={`w-full ${isFullHeight ? 'h-auto' : 'h-full object-cover object-top'}`}
              />
              {block.caption && (
                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
@@ -149,86 +155,158 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
           </motion.section>
         );
 
+      case 'testimonial':
+        return (
+          <motion.section 
+            key={block.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-12 gap-6 md:gap-12 mb-20"
+          >
+            <div className="md:col-span-4">
+              {block.title && (
+                <h3 className="text-2xl text-white font-bold font-serif sticky top-32">{block.title}</h3>
+              )}
+            </div>
+            <div className="md:col-span-8 space-y-12">
+              {block.intro && (
+                <p className="text-secondary text-lg mb-8 leading-relaxed whitespace-pre-line">
+                  {block.intro}
+                </p>
+              )}
+              {block.items.map((item, idx) => (
+                <div key={idx} className="border-l-2 border-blue-500/50 pl-6 md:pl-8 py-2">
+                  <blockquote className="text-2xl md:text-3xl text-blue-400 font-bold mb-4 font-serif leading-tight">
+                    {item.quote}
+                  </blockquote>
+                  <p className="text-lg text-secondary/90 leading-relaxed italic">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+        );
+
+      case 'stats':
+        return (
+          <motion.section 
+            key={block.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-12 gap-6 md:gap-12 mb-20"
+          >
+            <div className="md:col-span-4">
+              {block.title && (
+                <h3 className="text-2xl text-white font-bold font-serif sticky top-32">{block.title}</h3>
+              )}
+            </div>
+            <div className="md:col-span-8">
+              {block.intro && (
+                <p className="text-secondary text-lg mb-10 leading-relaxed whitespace-pre-line">
+                  {block.intro}
+                </p>
+              )}
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-10">
+                {block.items.map((item, idx) => (
+                  <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-lg flex flex-col justify-between h-full min-h-[160px] hover:bg-white/10 transition-colors duration-300">
+                    <span className="text-xs uppercase tracking-widest text-secondary/60 mb-2">{item.category}</span>
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        {item.trend === 'up' && <ArrowUp className="text-green-400 w-6 h-6 md:w-8 md:h-8" />}
+                        {item.trend === 'down' && <ArrowDown className="text-green-400 w-6 h-6 md:w-8 md:h-8" />}
+                        <span className="block text-3xl md:text-4xl text-white font-bold font-serif text-balance leading-tight">{item.value}</span>
+                      </div>
+                      <span className="text-sm md:text-base text-secondary">{item.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {block.conclusion && (
+                <p className="text-secondary text-lg leading-relaxed whitespace-pre-line">
+                  {formatText(block.conclusion)}
+                </p>
+              )}
+            </div>
+          </motion.section>
+        );
+
       default:
         return null;
     }
   };
 
   return (
-    <div className="relative z-10 bg-background min-h-screen pb-24">
-      {/* Back Button */}
-      <div className="fixed top-24 left-6 md:left-12 z-50">
+    <div className="min-h-screen bg-background text-primary pt-24 pb-32">
+       {/* Global Background (from App.tsx) is fixed, so this sits on top */}
+       
+       <div className="fixed top-8 left-6 md:left-12 z-50">
         <button 
           onClick={onBack}
-          className="flex items-center gap-2 text-secondary hover:text-white transition-colors duration-300 uppercase tracking-widest text-xs font-bold group bg-black/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/5"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group text-sm uppercase tracking-widest font-medium"
         >
-          <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
+          <ArrowLeft size={16} className="text-white group-hover:-translate-x-1 transition-transform" />
           Back
         </button>
-      </div>
+       </div>
 
-      {/* Hero Header */}
-      <header className="pt-40 pb-20 px-6 md:px-12 container mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="block text-secondary text-sm uppercase tracking-widest mb-6">
-            Case Study • {project.year}
-          </span>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-primary font-bold tracking-tight mb-8">
-            {project.title}
-          </h1>
-          <p className="text-xl md:text-2xl text-secondary max-w-3xl leading-relaxed">
-            {project.description}
-          </p>
-        </motion.div>
-      </header>
+       <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+          {/* Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-20 md:mb-32 mt-12"
+          >
+             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[1.1] tracking-tight">
+              {project.title}
+             </h1>
+             <p className="text-xl md:text-2xl text-secondary max-w-2xl font-light leading-relaxed">
+              {project.description}
+             </p>
+          </motion.div>
 
-      {/* Hero Image */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-full h-[60vh] md:h-[80vh] overflow-hidden"
-      >
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover"
-        />
-      </motion.div>
-
-      {/* Content Body */}
-      <div className="container mx-auto max-w-6xl px-6 md:px-12">
-        
-        {/* Stats Grid - Constrained to max-w-4xl to match content below */}
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 border-y border-white/10 py-12 mt-20 md:mt-32 mb-32">
-          <div>
-            <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Role</h4>
-            <p className="text-white font-medium">{contentData.role}</p>
+          {/* Stats Grid */}
+          <div className="max-w-4xl mx-auto mb-32 border-y border-white/10 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              <div>
+                <span className="block text-xs uppercase tracking-widest text-secondary/60 mb-2">Role</span>
+                <span className="text-white font-medium">{contentData.role}</span>
+              </div>
+              <div>
+                <span className="block text-xs uppercase tracking-widest text-secondary/60 mb-2">Year</span>
+                <span className="text-white font-medium">{project.year}</span>
+              </div>
+               <div>
+                <span className="block text-xs uppercase tracking-widest text-secondary/60 mb-2">Product</span>
+                <span className="text-white font-medium">{contentData.product}</span>
+              </div>
+               <div>
+                <span className="block text-xs uppercase tracking-widest text-secondary/60 mb-2">Team</span>
+                <span className="text-white font-medium">{contentData.team}</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Year</h4>
-            <p className="text-white font-medium">{project.year}</p>
-          </div>
-          <div>
-            <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Product</h4>
-            <p className="text-white font-medium">{contentData.product}</p>
-          </div>
-          <div>
-            <h4 className="text-secondary text-xs uppercase tracking-widest mb-2">Team</h4>
-            <p className="text-white font-medium">{contentData.team}</p>
-          </div>
-        </div>
 
-        {/* Dynamic Content Blocks */}
-        <div className="max-w-4xl mx-auto">
-          {contentData.content.map(block => renderBlock(block))}
-        </div>
+          {/* Dynamic Content Blocks */}
+          <div className="max-w-4xl mx-auto">
+            {contentData.content.map(block => renderBlock(block))}
+          </div>
 
-      </div>
+          {/* Next Project / Footer Nav (Simple placeholder for now) */}
+          <div className="max-w-4xl mx-auto mt-32 pt-20 border-t border-white/10 flex justify-center">
+             <button 
+               onClick={onBack}
+               className="text-secondary hover:text-white transition-colors text-lg font-serif italic"
+             >
+               Back to all work
+             </button>
+          </div>
+       </div>
     </div>
   );
 };

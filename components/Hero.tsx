@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
-          <ArrowDown size={20} className="text-primary" />
+          <ArrowDown size={20} className="text-white" />
         </motion.div>
       </motion.div>
     </section>
