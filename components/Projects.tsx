@@ -107,24 +107,13 @@ const projects: Project[] = [
       content: [
         {
           id: 'problem-breakdown',
-          type: 'list',
+          type: 'text',
           title: 'The problem',
-          intro: "Environments in Domino are essentially abstracted Docker images - versioned, shareable templates that power every unit of execution on the platform. They’re central to reproducibility and collaboration.\n\nBut the product experience around them wasn’t built for how users actually worked.",
-          items: [
-            {
-                label: "It assumed users already knew exactly which environment they needed. Many didn’t."
-            },
-            {
-                label: "The list view had almost no metadata or filtering, so browsing or comparing environments was basically impossible."
-            },
-            {
-                label: "The creation flow lived inside a cramped modal, which led to accidental environment creation and a very unclear mental model of “basic” vs. “advanced” configuration."
-            },
-            {
-                label: "The three major creation paths — Python packages, requirements/Conda files, and Dockerfiles — weren’t surfaced in a way that matched real user needs."
-            }
-          ],
-          conclusion: "Across customer conversations, the same patterns repeated: confusion, friction, and unnecessary complexity."
+          paragraphs: [
+            "Environments in Domino are essentially abstracted Docker images - versioned, shareable templates that power every unit of execution on the platform. They’re central to reproducibility and collaboration.",
+            "But the product experience around them wasn’t built for how users actually worked.",
+            "Across customer conversations, the same patterns repeated: confusion, friction, and unnecessary complexity."
+          ]
         },
         {
           id: 'insights',
@@ -132,9 +121,10 @@ const projects: Project[] = [
           title: 'Research insights',
           intro: "Through user interviews and contextual inquiries, we understood that:",
           items: [
-            "Users often didn’t know where to start — they needed the ability to browse, compare, and explore environments.",
+            "Users often didn’t know where to start. The existing product assumed users already knew exactly which environment they needed. Many didn’t. They needed the ability to browse, compare, and explore environments.",
+            "The list view had almost no metadata or filtering, so browsing or comparing environments was basically impossible.",
+            "The creation flow lived inside a cramped modal, which led to accidental environment creation and a very unclear mental model of “basic” vs. “advanced” configuration.",
             "requirements.txt / Conda-based setups were actually the most common workflow, yet the product treated them as “advanced.”",
-            "The modal-to-details-page jump confused nearly everyone. The system was creating environments before users were ready.",
             "Advanced users (Dockerfile) needed power tools, but they shouldn’t dominate the primary paths."
           ]
         },
