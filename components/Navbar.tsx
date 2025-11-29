@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Linkedin, Instagram } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
@@ -120,11 +121,16 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isHome = true }) => {
     }
   };
 
+  // Dynamic header styling
+  const headerClasses = isMobileMenuOpen 
+    ? 'py-6 bg-transparent' // Transparent when menu is open to avoid overlay overlap visual issues
+    : isScrolled 
+      ? 'py-4 bg-background/80 backdrop-blur-md border-b border-white/5' 
+      : 'py-8 bg-transparent';
+
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        isScrolled ? 'py-4 bg-background/80 backdrop-blur-md border-b border-white/5' : 'py-8 bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${headerClasses}`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         
@@ -215,10 +221,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isHome = true }) => {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="fixed inset-0 bg-background z-50 flex flex-col items-center justify-center md:hidden"
+              className="fixed inset-0 bg-background z-50 flex flex-col items-center justify-center md:hidden h-[100dvh]"
             >
               <motion.nav 
-                className="flex flex-col items-center space-y-8"
+                className="flex flex-col items-center space-y-8 p-4"
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
@@ -229,7 +235,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isHome = true }) => {
                     key={item.label}
                     variants={itemVariants}
                     onClick={() => handleLinkClick(item.href)}
-                    className="font-serif text-5xl text-white/90 hover:text-white transition-colors duration-300 font-bold tracking-tight"
+                    className="font-serif text-4xl sm:text-5xl text-white/90 hover:text-white transition-colors duration-300 font-bold tracking-tight"
                   >
                     {item.label}
                   </motion.button>
