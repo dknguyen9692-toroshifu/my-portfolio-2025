@@ -1,3 +1,4 @@
+// Force rebuild - updated Nov 29, 2025
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
