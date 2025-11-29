@@ -61,7 +61,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
             <div className="md:col-span-8 space-y-6">
               {block.paragraphs.map((paragraph, index) => (
                 <p key={index} className="text-secondary text-lg leading-relaxed">
-                  {paragraph}
+                  {formatText(paragraph)}
                 </p>
               ))}
             </div>
@@ -118,26 +118,26 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
             <div className="md:col-span-8">
                {block.intro && (
                 <p className="text-secondary text-lg mb-6 leading-relaxed whitespace-pre-line">
-                  {block.intro}
+                  {formatText(block.intro)}
                 </p>
                )}
                <ListTag className={`${listClass} list-outside text-secondary space-y-4 ml-4`}>
                 {block.items.map((item, index) => {
                   if (typeof item === 'string') {
-                    return <li key={index} className="pl-2 leading-relaxed text-lg">{item}</li>;
+                    return <li key={index} className="pl-2 leading-relaxed text-lg">{formatText(item)}</li>;
                   } else {
                      return (
                       <li key={index} className="pl-2 leading-relaxed text-lg">
-                        <span className="block text-white font-medium">{item.label}</span>
+                        <span className="block text-white font-medium">{formatText(item.label)}</span>
                         
                         {item.description && (
-                          <p className="text-secondary text-lg mt-1 mb-2 leading-relaxed">{item.description}</p>
+                          <p className="text-secondary text-lg mt-1 mb-2 leading-relaxed">{formatText(item.description)}</p>
                         )}
                         
                         {item.subItems && (
                           <ul className="list-disc list-outside ml-6 space-y-2 text-lg text-secondary/80 mt-2">
                             {item.subItems.map((sub, subIdx) => (
-                              <li key={subIdx} className="pl-2">{sub}</li>
+                              <li key={subIdx} className="pl-2">{formatText(sub)}</li>
                             ))}
                           </ul>
                         )}
@@ -172,7 +172,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
             <div className="md:col-span-8 space-y-12">
               {block.intro && (
                 <p className="text-secondary text-lg mb-8 leading-relaxed whitespace-pre-line">
-                  {block.intro}
+                  {formatText(block.intro)}
                 </p>
               )}
               {block.items.map((item, idx) => (
@@ -206,7 +206,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
             <div className="md:col-span-8">
               {block.intro && (
                 <p className="text-secondary text-lg mb-10 leading-relaxed whitespace-pre-line">
-                  {block.intro}
+                  {formatText(block.intro)}
                 </p>
               )}
               
@@ -269,7 +269,23 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
               {project.description}
              </p>
           </motion.div>
+       </div>
 
+       {/* Main Hero Image - Full Width */}
+       <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full mb-20 md:mb-32 bg-surface"
+       >
+          <img 
+            src={project.image} 
+            alt={project.title}
+            className="w-full h-auto block"
+          />
+       </motion.div>
+
+       <div className="container mx-auto px-6 md:px-12 max-w-6xl">
           {/* Stats Grid */}
           <div className="max-w-4xl mx-auto mb-32 border-y border-white/10 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -301,9 +317,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
           <div className="max-w-4xl mx-auto mt-32 pt-20 border-t border-white/10 flex justify-center">
              <button 
                onClick={onBack}
-               className="text-secondary hover:text-white transition-colors text-lg font-serif italic"
+               className="flex items-center gap-2 px-4 py-2 border border-white/20 rounded-sm hover:bg-white/10 transition-colors duration-300"
              >
-               Back to all work
+               <span className="text-[10px] uppercase tracking-widest text-secondary font-medium">
+                 Back to all work
+               </span>
              </button>
           </div>
        </div>

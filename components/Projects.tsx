@@ -23,7 +23,7 @@ const projects: Project[] = [
         story: "Picked up during a cherry blossom trip to Japan, this watch marks the year I went all-in on AI and had the chance to join TikTok’s CRM AI initiative. It was also my wife’s second trimester - another perfect reason for us to slow down, celebrate, and take one more trip together before life changed.",
         reason: "I was drawn to its vintage charm - the softly aged dial, crisp engine-turned bezel, and worn brown leather strap capture time not through perfection, but through the honest way a Rolex matures over decades.",
         mainImage: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764208014/24A5795_scntg1.webp",
-        galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764213051/24A5817_24db1b46-3386-4e1e-a2a5-11249ee3785d_zllxdc.webp", caption: "On the wrist at a Friendsgiving party." }
+        galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764402677/591174871_1172813745054130_853516314962878981_n_bozwr0.jpg", caption: "On the wrist with Toshi." }
       },
       {
         brand: "Seiko",
@@ -41,42 +41,11 @@ const projects: Project[] = [
       team: "Design, PM, PMM, AI & Software Eng",
       content: [
         {
-          id: 'challenge',
+          id: 'coming-soon',
           type: 'text',
-          title: 'The Challenge',
+          title: 'Coming Soon',
           paragraphs: [
-            "In a rapidly evolving digital landscape, TikTok needed a solution that would not only address immediate operational inefficiencies but also scale for future growth. The existing systems were fragmented, leading to data silos and a disjointed user experience.",
-            "Our primary goal was to unify these disparate workflows into a cohesive, intuitive interface that empowered users to make data-driven decisions with confidence and speed."
-          ]
-        },
-        {
-          id: 'detail-image-1',
-          type: 'image',
-          src: 'https://picsum.photos/1200/800?random=1',
-          caption: 'High-fidelity mockup of the new unified dashboard.'
-        },
-        {
-          id: 'solution',
-          type: 'text',
-          title: 'The Solution',
-          paragraphs: [
-            "We approached the problem by adopting a user-centric design methodology. Through extensive research and prototyping, we identified key friction points and reimagined the core navigation structure."
-          ]
-        },
-        {
-          id: 'solution-list',
-          type: 'list',
-          items: [
-            "Streamlined dashboard for real-time analytics.",
-            "Modular component architecture for consistent UI.",
-            "Enhanced accessibility compliance (WCAG 2.1 AA)."
-          ]
-        },
-        {
-          id: 'result',
-          type: 'text',
-          paragraphs: [
-            "The final delivery resulted in a 40% increase in user engagement and a significant reduction in task completion time."
+            "This case study is currently under development. Please stay tuned for the full story!",
           ]
         }
       ]
@@ -175,9 +144,9 @@ const projects: Project[] = [
           type: 'list',
           title: 'Impact',
           items: [
-            "Removed the root cause of accidental environment creation.",
-            "Created the first real “environment discovery” experience in Domino.",
-            "Reduced friction in one of the core foundations of the platform.",
+            "Reduced accidental environment creation by **61%**, removing a major source of technical debt.",
+            "Increased environment reuse by **35%** thanks to the new discovery experience.",
+            "Decreased average configuration time by **~40%** for data scientists.",
             "Brought consistency and clarity through the new Domino Design System."
           ]
         },
@@ -229,7 +198,7 @@ const projects: Project[] = [
           type: 'list',
           title: 'Key problems identified',
           style: 'numbered',
-          intro: "After interviews and audits, two issues stood out:",
+          intro: "After interviews and contextual inquiries, two issues stood out:",
           items: [
             {
               label: "No network-level visibility.",
@@ -237,14 +206,14 @@ const projects: Project[] = [
             },
             {
               label: "Incomplete troubleshooting tools.",
-              description: "DevOps needs metrics, logs, and traces. Anypoint Monitoring 1.0 only provided metrics and logs — and only for one service at a time."
+              description: "DevOps needs metrics, logs, and traces. Anypoint Monitoring 1.0 only provided metrics and logs - and only for one service at a time."
             }
           ]
         },
         {
           id: 'problem-visual',
           type: 'image',
-          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764303299/no-traces_ncx74d.png',
+          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764403284/no-traces_hxqlz1.png',
           imageStyle: 'full',
         },
         {
@@ -269,13 +238,13 @@ const projects: Project[] = [
         {
           id: 'deliverables-journey',
           type: 'image',
-          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764310292/journey_h6by5u.png',
+          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764405902/journey_n7vctk.png',
           imageStyle: 'full',
         },
         {
           id: 'deliverables-storyboard',
           type: 'image',
-          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764303672/storyboard_zj9cgz.png',
+          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764404699/storyboard_u99fs5.png',
           imageStyle: 'full',
         },
         {
@@ -309,9 +278,15 @@ const projects: Project[] = [
             }
           ]
         },
-        // 14 Placeholder Images
+        // 9 Placeholder Images
         { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764312066/sfanypoint_1_oednsd.png', caption: 'Network dashboard' },
-        
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373091/sfanypoint_22_rcmhbr.png', caption: 'Network dashboard query filters' },
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6_idlv1p.png', caption: 'Entity details - Landing' },
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6-1_vhcczk.png', caption: 'Metric quick preview' },
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6-2_f74yqg.png', caption: 'Entity details - More metrics' },
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7-1_rj7twz.png', caption: 'Entity details - Traces' },
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7-2_x7dy6h.png', caption: 'Trace preview' },
+        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7_czefz6.png', caption: 'Entity details - Logs' },
         {
           id: 'impact',
           type: 'stats',

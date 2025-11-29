@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
 const experiences = [
-  { role: "Staff product designer", company: "TikTok", period: "Feb 2024 — Present" },
-  { role: "Lead product designer", company: "Domino AI", period: "Mar 2023 — Feb 2024" },
-  { role: "Lead product designer", company: "Salesforce", period: "Sep 2021 — Feb 2024" },
-  { role: "Sr. product designer", company: "Oracle Cloud", period: "Aug 2017 — Sep 2021" },
-  { role: "Contract designer", company: "Microsoft", period: "Oct 2016 — June 2017" },
+  { role: "Staff product designer", company: "TikTok", period: "Feb 2024 - Present" },
+  { role: "Lead product designer", company: "Domino AI", period: "Mar 2023 - Feb 2024" },
+  { role: "Lead product designer", company: "Salesforce", period: "Sep 2021 - Feb 2024" },
+  { role: "Sr. product designer", company: "Oracle Cloud", period: "Aug 2017 - Sep 2021" },
+  { role: "Contract designer", company: "Microsoft", period: "Oct 2016 - June 2017" },
 ];
 
 const About: React.FC = () => {
