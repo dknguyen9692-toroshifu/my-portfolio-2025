@@ -5,7 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: '/my-portfolio-2025/', // ADD THIS LINE
+    base: '/', // CHANGE THIS - was '/my-portfolio-2025/'
+    publicDir: 'public', // ADD THIS LINE - tells Vite to copy files from public/ to dist/
     server: {
       port: 3000,
       host: '0.0.0.0',
