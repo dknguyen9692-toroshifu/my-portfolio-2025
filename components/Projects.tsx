@@ -429,6 +429,7 @@ const WatchDrawer: React.FC<{
                           src={watch.mainImage}
                           alt={`${watch.brand} ${watch.model}`}
                           className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                          loading="lazy"
                         />
                       </div>
 
@@ -459,6 +460,7 @@ const WatchDrawer: React.FC<{
                             src={watch.galleryImage.src}
                             alt={watch.galleryImage.caption}
                             className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            loading="lazy"
                           />
                         </div>
                         <p className="text-[10px] uppercase tracking-wider text-secondary/50 flex items-center gap-1">
@@ -535,6 +537,7 @@ const ProjectItem: React.FC<{
                 src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
             </motion.div>

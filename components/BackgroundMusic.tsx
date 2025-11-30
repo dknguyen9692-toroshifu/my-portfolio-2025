@@ -74,6 +74,7 @@ const BackgroundMusic: React.FC = () => {
                 ref={audioRef}
                 src={currentTrack.src}
                 onEnded={handleTrackEnd}
+                preload="none"
             />
 
             <button
