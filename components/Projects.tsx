@@ -11,7 +11,7 @@ const projects: Project[] = [
     id: '1',
     title: 'TikTok',
     category: 'Conversational AI chatbot',
-    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764132458/tiktok_qjyhje.png', 
+    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764132458/tiktok_qjyhje.png',
     year: '2025',
     watchYear: '2024-2025',
     description: "Bringing agentic AI to the finger tips of TikTok's global sales teams (coming soon).",
@@ -138,7 +138,7 @@ const projects: Project[] = [
         { id: 'gallery-13', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238587/new-create-environment-10_bi3pmu.png', caption: 'Create environment workflow' },
         { id: 'gallery-14', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238587/new-create-environment-13_gyjqdf.png', caption: 'Create environment workflow' },
         { id: 'gallery-15', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238491/new-global-environment-details-created_blk3oa.png', caption: 'New environment created' },
-        
+
         {
           id: 'impact',
           type: 'list',
@@ -353,9 +353,9 @@ interface ProjectsProps {
 
 // --- Components ---
 
-const WatchDrawer: React.FC<{ 
-  isOpen: boolean; 
-  onClose: () => void; 
+const WatchDrawer: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
   watches: WatchStory[] | undefined;
   year: string;
 }> = ({ isOpen, onClose, watches, year }) => {
@@ -382,7 +382,7 @@ const WatchDrawer: React.FC<{
             onClick={onClose}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90]"
           />
-          
+
           {/* Drawer Container */}
           <motion.div
             initial={{ x: "100%" }}
@@ -391,9 +391,9 @@ const WatchDrawer: React.FC<{
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-y-0 right-0 z-[100] w-full md:w-[600px] bg-[#0f0f0f] border-l border-white/10 shadow-2xl flex flex-col overflow-hidden"
           >
-             {/* Header / Close Button Area - Fixed at top */}
-             <div className="absolute top-0 right-0 z-50 p-6 md:p-8">
-              <button 
+            {/* Header / Close Button Area - Fixed at top */}
+            <div className="absolute top-0 right-0 z-50 p-6 md:p-8">
+              <button
                 onClick={onClose}
                 className="flex items-center justify-center p-3 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300 rounded-full shadow-lg group"
                 aria-label="Close"
@@ -404,7 +404,7 @@ const WatchDrawer: React.FC<{
 
             {/* Scrollable Content Area */}
             <div className="flex-1 overflow-y-auto w-full">
-               <div className="px-8 md:px-12 pb-12 pt-6 md:pt-8"> {/* Adjusted padding to align with close button */}
+              <div className="px-8 md:px-12 pb-12 pt-6 md:pt-8"> {/* Adjusted padding to align with close button */}
                 <div className="mb-12">
                   <span className="block text-secondary text-xs uppercase tracking-widest mb-4 mt-4"> {/* mt-4 to align with button center */}
                     Timepiece Collection
@@ -425,10 +425,10 @@ const WatchDrawer: React.FC<{
 
                       {/* Main Image */}
                       <div className="aspect-[4/3] w-full overflow-hidden rounded-sm mb-8 bg-surface">
-                        <img 
-                          src={watch.mainImage} 
+                        <img
+                          src={watch.mainImage}
                           alt={`${watch.brand} ${watch.model}`}
-                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                         />
                       </div>
 
@@ -454,26 +454,26 @@ const WatchDrawer: React.FC<{
 
                       {/* Gallery Image (Single) */}
                       <div className="space-y-2">
-                          <div className="aspect-[4/3] w-full overflow-hidden rounded-sm bg-surface">
-                            <img 
-                              src={watch.galleryImage.src} 
-                              alt={watch.galleryImage.caption}
-                              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            />
-                          </div>
-                          <p className="text-[10px] uppercase tracking-wider text-secondary/50 flex items-center gap-1">
-                            <Camera size={10} />
-                            {watch.galleryImage.caption}
-                          </p>
+                        <div className="aspect-[4/3] w-full overflow-hidden rounded-sm bg-surface">
+                          <img
+                            src={watch.galleryImage.src}
+                            alt={watch.galleryImage.caption}
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                          />
+                        </div>
+                        <p className="text-[10px] uppercase tracking-wider text-secondary/50 flex items-center gap-1">
+                          <Camera size={10} />
+                          {watch.galleryImage.caption}
+                        </p>
                       </div>
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-20 pt-12 border-t border-white/5 text-center">
-                   <p className="text-secondary/60 text-base italic font-serif">
-                     "Time is the only true luxury."
-                   </p>
+                  <p className="text-secondary/60 text-base italic font-serif">
+                    "Time is the only true luxury."
+                  </p>
                 </div>
 
               </div>
@@ -487,12 +487,12 @@ const WatchDrawer: React.FC<{
 };
 
 // Individual Project Component
-const ProjectItem: React.FC<{ 
-  project: Project; 
-  index: number; 
-  onCaseStudyClick: (p: Project) => void; 
+const ProjectItem: React.FC<{
+  project: Project;
+  index: number;
+  onCaseStudyClick: (p: Project) => void;
   onWatchClick: (p: Project) => void;
-  setHoveredProject: (id: string | null) => void; 
+  setHoveredProject: (id: string | null) => void;
 }> = ({ project, index, onCaseStudyClick, onWatchClick, setHoveredProject }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isWatchHovered, setIsWatchHovered] = useState(false);
@@ -501,7 +501,7 @@ const ProjectItem: React.FC<{
     target: ref,
     offset: ["start end", "end start"]
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
@@ -509,7 +509,7 @@ const ProjectItem: React.FC<{
       {/* Timeline Node - Adjusted top to align with year */}
       <div className="absolute left-[-5px] top-2 w-[9px] h-[9px] rounded-full bg-surface border border-secondary/50 z-20 group-hover:bg-white group-hover:border-white transition-colors duration-300"></div>
 
-      <motion.div 
+      <motion.div
         ref={ref}
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -522,17 +522,17 @@ const ProjectItem: React.FC<{
       >
         {/* Year Label - Timeline style - Clean */}
         <div className="flex items-center gap-4">
-           <span className="font-mono text-sm text-secondary/70 group-hover:text-white transition-colors">
+          <span className="font-mono text-sm text-secondary/70 group-hover:text-white transition-colors">
             {project.year}
-           </span>
+          </span>
         </div>
 
         {/* Image Container */}
         <div className="w-full overflow-hidden rounded-sm bg-surface">
           <div className="relative overflow-hidden aspect-[16/10]">
             <motion.div style={{ y, scale: 1.05 }} className="w-full h-full relative">
-               <img 
-                src={project.image} 
+              <img
+                src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105"
               />
@@ -556,29 +556,29 @@ const ProjectItem: React.FC<{
           </div>
 
           <div className="flex flex-col items-end gap-6 shrink-0">
-             {/* Primary Action: Case Study */}
-             <div className="flex items-center gap-2 text-white border-b border-white/30 pb-1 group-hover:border-white transition-all duration-300">
-                <span className="text-xs font-bold uppercase tracking-widest">See Case Study</span>
-                <ArrowUpRight size={14} className="text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-             </div>
+            {/* Primary Action: Case Study */}
+            <div className="flex items-center gap-2 text-white border-b border-white/30 pb-1 group-hover:border-white transition-all duration-300">
+              <span className="text-xs font-bold uppercase tracking-widest">See Case Study</span>
+              <ArrowUpRight size={14} className="text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </div>
 
-             {/* Secondary Action: Timepieces - Subtle */}
-             {project.watches && (
-               <button 
-                 onClick={(e) => {
-                   e.stopPropagation();
-                   onWatchClick(project);
-                 }}
-                 onMouseEnter={() => setIsWatchHovered(true)}
-                 onMouseLeave={() => setIsWatchHovered(false)}
-                 className="flex items-center gap-2 px-4 py-2 border border-white/20 rounded-sm hover:bg-white/10 transition-colors duration-300"
-               >
-                 <Watch size={12} className="text-secondary" />
-                 <span className="text-[10px] uppercase tracking-widest text-secondary font-medium">
-                   Timepieces of {project.watchYear || project.year}
-                 </span>
-               </button>
-             )}
+            {/* Secondary Action: Timepieces - Subtle */}
+            {project.watches && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onWatchClick(project);
+                }}
+                onMouseEnter={() => setIsWatchHovered(true)}
+                onMouseLeave={() => setIsWatchHovered(false)}
+                className="flex items-center gap-2 px-4 py-2 border border-white/20 rounded-sm hover:bg-white/10 transition-colors duration-300"
+              >
+                <Watch size={12} className="text-secondary" />
+                <span className="text-[10px] uppercase tracking-widest text-secondary font-medium">
+                  Timepieces of {project.watchYear || project.year}
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </motion.div>
@@ -593,23 +593,26 @@ const Projects: React.FC<ProjectsProps> = ({ onCaseStudyClick }) => {
   return (
     <section id="work" className="py-24 md:py-40 bg-transparent relative z-10">
       <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-        
+
         <div className="mb-20 md:mb-32">
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl text-primary font-bold mb-8 tracking-tight">
             Sample work
           </h2>
+          <p className="text-secondary text-lg md:text-xl max-w-2xl leading-relaxed font-light mb-6">
+            A few selected projects where I tackled technical ambiguity and simplified complex workflows.
+          </p>
           <p className="text-secondary text-lg md:text-xl max-w-2xl leading-relaxed font-light">
-            A few selected projects where I tackled technical ambiguity and simplified complex workflows. In addition to product & UX design, I'm also a big enthusiast for mechanical watches. Click on the "Timepiece" button under each case study to learn more about the special watches I bought during that year.
+            In addition to product & UX design, I'm also a big enthusiast for mechanical watches. <span className="text-white">Click on the "Timepieces" button under each case study to learn more about the special watches I bought during that year.</span>
           </p>
         </div>
 
         {/* Timeline Container */}
         <div className="relative border-l border-white/10 ml-4 md:ml-0 space-y-32 md:space-y-48">
           {projects.map((project, index) => (
-            <ProjectItem 
-              key={project.id} 
-              project={project} 
-              index={index} 
+            <ProjectItem
+              key={project.id}
+              project={project}
+              index={index}
               onCaseStudyClick={onCaseStudyClick}
               onWatchClick={(p) => setSelectedWatchProject(p)}
               setHoveredProject={setHoveredProject}
@@ -618,8 +621,8 @@ const Projects: React.FC<ProjectsProps> = ({ onCaseStudyClick }) => {
         </div>
 
         {/* Watch Details Overlay */}
-        <WatchDrawer 
-          isOpen={!!selectedWatchProject} 
+        <WatchDrawer
+          isOpen={!!selectedWatchProject}
           onClose={() => setSelectedWatchProject(null)}
           watches={selectedWatchProject?.watches}
           year={selectedWatchProject?.watchYear || selectedWatchProject?.year || ''}
