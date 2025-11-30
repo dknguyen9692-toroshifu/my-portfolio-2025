@@ -7,6 +7,7 @@ import LifeSnapshots from './components/LifeSnapshots';
 import Contact from './components/Contact';
 import BackgroundAnimation from './components/BackgroundAnimation';
 import CaseStudy from './components/CaseStudy';
+import BackgroundMusic from './components/BackgroundMusic';
 import { Project } from './types';
 
 type ViewState = 'home' | 'case-study';
@@ -58,28 +59,31 @@ function App() {
 
   return (
     <div className="min-h-screen text-primary selection:bg-white selection:text-black relative overflow-x-hidden">
-      
+
       {/* Global Background Animation */}
       <BackgroundAnimation />
 
+      {/* Background Music Player */}
+      <BackgroundMusic />
+
       {/* Custom Cursor Element */}
-      <div 
+      <div
         className="fixed top-0 left-0 w-8 h-8 border border-white rounded-full pointer-events-none z-[100] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block transition-transform duration-100 ease-linear"
-        style={{ 
-          left: mousePosition.x, 
+        style={{
+          left: mousePosition.x,
           top: mousePosition.y,
         }}
       />
-      <div 
+      <div
         className="fixed top-0 left-0 w-1 h-1 bg-white rounded-full pointer-events-none z-[100] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block"
-        style={{ 
-          left: mousePosition.x, 
+        style={{
+          left: mousePosition.x,
           top: mousePosition.y,
         }}
       />
 
       <Navbar onNavigate={handleNavigation} isHome={view === 'home'} />
-      
+
       {view === 'home' ? (
         <main className="relative z-10">
           <Hero />
@@ -89,13 +93,13 @@ function App() {
         </main>
       ) : (
         selectedProject && (
-          <CaseStudy 
-            project={selectedProject} 
+          <CaseStudy
+            project={selectedProject}
             onBack={handleBackToHome}
           />
         )
       )}
-      
+
       {view === 'home' && <Contact />}
     </div>
   );
