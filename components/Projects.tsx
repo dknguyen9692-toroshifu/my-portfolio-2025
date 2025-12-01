@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Watch, X, MapPin, Camera, ArrowUp, ArrowDown } from 'lucide-react';
+import { ArrowUpRight, Watch, X, MapPin, Camera, ArrowUp, ArrowDown, EyeOff, Wrench, FileText, Map, Flag, Activity, GitMerge, Search } from 'lucide-react';
 import { Project, WatchStory } from '../types';
 
 // Updated Data with Timeline Order and Watches
@@ -197,16 +197,18 @@ const projects: Project[] = [
           id: 'problem',
           type: 'list',
           title: 'Key problems identified',
-          style: 'numbered',
+          style: 'cards',
           intro: "After interviews and contextual inquiries, two issues stood out:",
           items: [
             {
               label: "No network-level visibility.",
-              description: "Anypoint Monitoring 1.0 only showed data after the user picked a single service. There was no top-level dashboard, no way to spot anomalies across the entire application network."
+              description: "Anypoint Monitoring 1.0 only showed data after the user picked a single service. There was no top-level dashboard, no way to spot anomalies across the entire application network.",
+              icon: <EyeOff size={24} />
             },
             {
               label: "Incomplete troubleshooting tools.",
-              description: "DevOps needs metrics, logs, and traces. Anypoint Monitoring 1.0 only provided metrics and logs - and only for one service at a time."
+              description: "DevOps needs metrics, logs, and traces. Anypoint Monitoring 1.0 only provided metrics and logs - and only for one service at a time.",
+              icon: <Wrench size={24} />
             }
           ]
         },
@@ -227,11 +229,24 @@ const projects: Project[] = [
           id: 'deliverables',
           type: 'list',
           title: 'What I did',
+          style: 'cards',
           intro: "I led workshops with PMs and engineers to re-think the experience from scratch. Three outputs aligned the team:",
           items: [
-            "Scenario storyboards for real-world detection + troubleshooting flows",
-            "Cross-persona journey map capturing how DevOps collaborates with SREs and architects",
-            "A North Star prototype that defined the future-state experience and got leadership buy-in."
+            {
+              label: "Scenario storyboards",
+              description: "For real-world detection + troubleshooting flows",
+              icon: <FileText size={24} />
+            },
+            {
+              label: "Cross-persona journey map",
+              description: "Capturing how DevOps collaborates with SREs and architects",
+              icon: <Map size={24} />
+            },
+            {
+              label: "A North Star prototype",
+              description: "Defined the future-state experience and got leadership buy-in.",
+              icon: <Flag size={24} />
+            }
           ],
           conclusion: "Once aligned, we focused on the highest-impact goal: *help DevOps engineers resolve issues faster.*"
         },
@@ -251,7 +266,7 @@ const projects: Project[] = [
           id: 'solutions',
           type: 'list',
           title: 'The solution',
-          style: 'numbered',
+          style: 'cards',
           intro: "We defined and delivered three major pillars for Anypoint Monitoring 2.0:",
           items: [
             {
@@ -259,14 +274,16 @@ const projects: Project[] = [
               subItems: [
                 "Real-time health of the entire application network",
                 "Robust filters for drilling into problem areas quickly"
-              ]
+              ],
+              icon: <Activity size={24} />
             },
             {
               label: "Full traces support across the network.",
               subItems: [
                 "True distributed tracing",
                 "Clear visibility into how issues propagate between services"
-              ]
+              ],
+              icon: <GitMerge size={24} />
             },
             {
               label: "A redesigned Entity Details view.",
@@ -274,7 +291,8 @@ const projects: Project[] = [
                 "Cleaner IA",
                 "Easier access to logs, metrics, and traces",
                 "Contextual insights into how each service impacts the wider network"
-              ]
+              ],
+              icon: <Search size={24} />
             }
           ]
         },

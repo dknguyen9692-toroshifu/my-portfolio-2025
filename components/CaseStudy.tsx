@@ -100,8 +100,68 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
 
       case 'list':
         const isNumbered = block.style === 'numbered';
+        const isCards = block.style === 'cards';
         const ListTag = isNumbered ? 'ol' : 'ul';
         const listClass = isNumbered ? 'list-decimal' : 'list-disc';
+
+        if (isCards) {
+          return (
+            <motion.section
+              key={block.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="grid md:grid-cols-12 gap-6 md:gap-12 mb-20"
+            >
+              <div className="md:col-span-4">
+                {block.title && (
+                  <h3 className="text-2xl text-white font-bold font-serif sticky top-32">{block.title}</h3>
+                )}
+              </div>
+              <div className="md:col-span-8">
+                {block.intro && (
+                  <p className="text-secondary text-lg mb-8 leading-relaxed whitespace-pre-line">
+                    {formatText(block.intro)}
+                  </p>
+                )}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {block.items.map((item, index) => {
+                    if (typeof item === 'string') return null; // Cards must be objects
+                    return (
+                      <div key={index} className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+                        {item.icon && (
+                          <div className="mb-4 text-white/80 group-hover:text-white transition-colors">
+                            {item.icon}
+                          </div>
+                        )}
+                        <h4 className="text-xl text-white font-bold mb-3">{formatText(item.label)}</h4>
+                        {item.description && (
+                          <p className="text-secondary text-base leading-relaxed">
+                            {formatText(item.description)}
+                          </p>
+                        )}
+                        {item.subItems && (
+                          <ul className="list-disc list-outside ml-4 space-y-2 text-sm text-secondary/80 mt-4 border-t border-white/10 pt-4">
+                            {item.subItems.map((sub, subIdx) => (
+                              <li key={subIdx}>{formatText(sub)}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {block.conclusion && (
+                  <p className="text-secondary text-lg mt-8 leading-relaxed whitespace-pre-line">
+                    {formatText(block.conclusion)}
+                  </p>
+                )}
+              </div>
+            </motion.section>
+          );
+        }
 
         return (
           <motion.section

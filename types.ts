@@ -1,4 +1,4 @@
-
+import React from 'react';
 export interface WatchPhoto {
   src: string;
   caption: string;
@@ -39,8 +39,8 @@ export interface ImageBlock extends BaseBlock {
 
 export interface ListBlock extends BaseBlock {
   type: 'list';
-  items: (string | { label: string; subItems?: string[]; description?: string })[];
-  style?: 'bullet' | 'numbered';
+  items: (string | { label: string; subItems?: string[]; description?: string; icon?: React.ReactNode })[];
+  style?: 'bullet' | 'numbered' | 'cards';
   intro?: string; // Optional intro text before the list
   conclusion?: string; // Optional closing text for the list section
 }
