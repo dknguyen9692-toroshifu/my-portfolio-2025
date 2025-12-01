@@ -7,16 +7,6 @@ const tracks = [
         title: "never see you again",
         artist: "antent",
         src: "/audio/bgm.mp3"
-    },
-    {
-        title: "snowfall",
-        artist: "øneheart x reidenshi",
-        src: "/audio/bgm2.mp3"
-    },
-    {
-        title: "watching the stars",
-        artist: "øneheart",
-        src: "/audio/bgm3.mp3"
     }
 ];
 
