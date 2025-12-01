@@ -217,6 +217,7 @@ const projects: Project[] = [
           type: 'image',
           src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764403284/no-traces_hxqlz1.png',
           imageStyle: 'full',
+          caption: 'Current state - no traces data available for troubleshooting'
         },
         {
           id: 'problem-conclusion',
@@ -255,12 +256,14 @@ const projects: Project[] = [
           type: 'image',
           src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764405902/journey_n7vctk.png',
           imageStyle: 'full',
+          caption: 'Cross-persona E2E journey map'
         },
         {
           id: 'deliverables-storyboard',
           type: 'image',
           src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764404699/storyboard_u99fs5.png',
           imageStyle: 'full',
+          caption: 'Scenario storyboards'
         },
         {
           id: 'solutions',

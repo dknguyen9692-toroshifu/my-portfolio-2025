@@ -4,9 +4,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const tracks = [
     {
-        title: "never see you again",
+        title: "snowfall",
+        artist: "øneheart x reidenshi",
+        src: "https://res.cloudinary.com/dcc0zasye/video/upload/v1764618556/bgm_s3u4ed.mp3"
+    },
+    {
+        title: "Mục hạ vô nhân",
+        artist: "SOOBIN X BINZ",
+        src: "https://res.cloudinary.com/dcc0zasye/video/upload/v1764617541/bgm2_qvhq6v.mp3"
+    },
+    {
+        title: "Ain't Letting You Down",
+        artist: "Martin Garrix & Saksham feat. Scott Quinn",
+        src: "https://res.cloudinary.com/dcc0zasye/video/upload/v1764618183/bgm3_ldifqq.mp3"
+    },
+    {
+        title: "Idea 22",
+        artist: "Gibran Alcocer",
+        src: "https://res.cloudinary.com/dcc0zasye/video/upload/v1764619327/bgm4_oq0uz5.mp3"
+    },
+    {
+        title: "hope to see you again",
         artist: "antent",
-        src: "/audio/bgm.mp3"
+        src: "https://res.cloudinary.com/dcc0zasye/video/upload/v1764620108/bgm5_ngmjks.mp3"
     }
 ];
 
@@ -108,9 +128,11 @@ const BackgroundMusic: React.FC = () => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -10 }}
-                        className="text-white/50 text-xs font-mono tracking-widest uppercase cursor-default overflow-hidden"
+                        className="text-white/50 text-xs font-mono tracking-widest uppercase cursor-pointer overflow-hidden hover:text-white/80 transition-colors"
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
+                        onClick={handleTrackEnd}
+                        title="Click to skip track"
                     >
                         <motion.div
                             key={isHovered ? "song" : "status"}
