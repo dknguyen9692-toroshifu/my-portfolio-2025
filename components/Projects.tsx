@@ -63,7 +63,7 @@ const projects: Project[] = [
         brand: "Rolex",
         model: "Vintage Oyster Perpetual Ref. 6558 (made in 1961)",
         purchaseLocation: "Acquired in Kyoto",
-        story: "My first vintage luxury watch - and my first timepiece purchased in Japan, a country that truly celebrates vintage craft. I found this 1961 Oyster Perpetual as I wrapped up my time at Domino AI in 2023, the same year ChatGPT kicked off the AI revolution. A timeless watch marking a turning point in a very fast-moving year.",
+        story: "My first vintage luxury watch - and my first timepiece purchased in Japan, a country that truly celebrates vintage craft. I found this 1961 Oyster Perpetual as I wrapped up my time at Domino AI (just before making a big career move to TikTok) in 2023, the same year ChatGPT kicked off the AI revolution. A timeless watch marking a turning point in a very fast-moving year.",
         reason: "I picked up this Rolex Oyster Perpetual knowing it was made in 1961 - the same year my dad was born. There’s something grounding about wearing a watch that has quietly ticked through the same decades he has. Its clean, understated dial and gentle patina feel less like “vintage character” and more like time itself, carried forward in a way that reminds me of where my story began.",
         mainImage: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764211178/0014-54823_pnyxfq.webp",
         galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764214645/cbee3c64-4c0c-4df4-9259-83d305593faf_ikyye0.jpg", caption: "On the wrist with baby Tofu." }
