@@ -20,7 +20,7 @@ const projects: Project[] = [
         brand: "Rolex",
         model: "Vintage Datejust Ref. 16220 (made in 1997)",
         purchaseLocation: "Acquired in Ginza, Tokyo",
-        story: "Picked up during a cherry blossom trip to Japan, this watch marks the year I went all-in on AI and had the chance to join TikTok’s CRM AI initiative. It was also my wife’s second trimester - another perfect reason for us to slow down, celebrate, and take one more trip together before life changed.",
+        story: "Picked up during a cherry blossom trip to Japan in 2025, this watch marks the year I went all-in on AI and had the chance to join TikTok’s CRM AI initiative. It was also my wife’s second trimester - another perfect reason for us to slow down, celebrate, and take one more trip together before life changed.",
         reason: "I was drawn to its vintage charm - the softly aged dial, crisp engine-turned bezel, and worn brown leather strap capture time not through perfection, but through the honest way a Rolex matures over decades.",
         mainImage: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764208014/24A5795_scntg1.webp",
         galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764402677/591174871_1172813745054130_853516314962878981_n_bozwr0.jpg", caption: "On the wrist with Toshi." }
