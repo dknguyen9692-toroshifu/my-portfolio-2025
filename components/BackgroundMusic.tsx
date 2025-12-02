@@ -91,6 +91,7 @@ const BackgroundMusic: React.FC = () => {
                 onClick={togglePlay}
                 className="group relative flex items-center justify-center w-12 h-12 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
                 aria-label={isPlaying ? "Pause music" : "Play music"}
+                title={!isPlaying ? "Play background music" : undefined}
             >
                 {/* Visualizer Bars Animation */}
                 <AnimatePresence>
@@ -128,25 +129,27 @@ const BackgroundMusic: React.FC = () => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -10 }}
-                        className="text-white/50 text-xs font-mono tracking-widest uppercase cursor-pointer overflow-hidden hover:text-white/80 transition-colors"
+                        className="group relative text-white/50 text-xs font-mono tracking-widest uppercase cursor-pointer hover:text-white/80 transition-colors"
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                         onClick={handleTrackEnd}
                         title="Click to skip track"
                     >
-                        <motion.div
-                            key={isHovered ? "song" : "status"}
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -20, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            {isHovered ? (
-                                <span className="text-white">"{currentTrack.title}" by {currentTrack.artist}</span>
-                            ) : (
-                                "Sound On"
-                            )}
-                        </motion.div>
+                        <div className="overflow-hidden">
+                            <motion.div
+                                key={isHovered ? "song" : "status"}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -20, opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                {isHovered ? (
+                                    <span className="text-white">"{currentTrack.title}" by {currentTrack.artist}</span>
+                                ) : (
+                                    "Sound On"
+                                )}
+                            </motion.div>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

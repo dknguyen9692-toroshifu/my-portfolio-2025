@@ -8,12 +8,12 @@ const snapshots = [
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135144/snapshot9_be6em2.jpg",
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135144/snapshot10_cwlski.jpg",
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135144/snapshot8_clpvb9.jpg",
-  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135044/snapshot7_roweue.jpg",
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764651053/snapshot7_g95ay3.jpg",
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135039/snapshot6_xshmhq.jpg",
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135038/snapshot5_wqesut.jpg",
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135037/snapshot4_lhveck.jpg",
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135037/snapshot3_a05lvd.jpg",
-  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135036/snapshot2_lvbdk3.jpg",
+  "https://res.cloudinary.com/dcc0zasye/image/upload/v1764651053/snapshot2_ptqu5a.jpg",
   "https://res.cloudinary.com/dcc0zasye/image/upload/v1764135036/snapshot1_o7irp7.jpg",
 ];
 
