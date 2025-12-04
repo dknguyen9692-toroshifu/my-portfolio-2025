@@ -21,12 +21,23 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, isHome = true }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let throttleTimer: ReturnType<typeof setTimeout> | null = null;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      // Throttle scroll handler to reduce event processing
+      if (!throttleTimer) {
+        setIsScrolled(window.scrollY > 20);
+        throttleTimer = setTimeout(() => {
+          throttleTimer = null;
+        }, 100);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (throttleTimer) clearTimeout(throttleTimer);
+    };
   }, []);
 
   // Lock body scroll when mobile menu is open
