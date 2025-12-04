@@ -1,9 +1,15 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Watch, X, MapPin, Camera, ArrowUp, ArrowDown, EyeOff, Wrench, FileText, Map, Flag, Activity, GitMerge, Search } from 'lucide-react';
+import { ArrowUpRight, Watch, X, MapPin, Camera, EyeOff, Wrench, FileText, Map, Flag, Activity, GitMerge, Search } from 'lucide-react';
 import { Project, WatchStory } from '../types';
+
+// Cloudinary URL helper for optimized images
+const optimizeCloudinaryUrl = (url: string): string => {
+  // Add q_auto,f_auto for automatic quality and format optimization
+  return url.replace('/upload/', '/upload/q_auto,f_auto/');
+};
 
 // Updated Data with Timeline Order and Watches
 const projects: Project[] = [
@@ -11,7 +17,7 @@ const projects: Project[] = [
     id: '1',
     title: 'TikTok',
     category: 'Conversational AI chatbot',
-    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764132458/tiktok_qjyhje.png',
+    image: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764132458/tiktok_qjyhje.png'),
     year: '2025',
     watchYear: '2024-2025',
     description: "Bringing agentic AI to the finger tips of TikTok's global sales teams (coming soon).",
@@ -22,17 +28,17 @@ const projects: Project[] = [
         purchaseLocation: "Acquired in Ginza, Tokyo",
         story: "Picked up during a cherry blossom trip to Japan in 2025, this watch marks the year I went all-in on AI and had the chance to join TikTok’s CRM AI initiative. It was also my wife’s second trimester and our official babymoon trip - another perfect reason for us to slow down, celebrate, and take one more trip together before life changed.",
         reason: "I was drawn to its vintage charm - the softly aged dial, crisp engine-turned bezel, and worn brown leather strap capture time not through perfection, but through the honest way a Rolex matures over decades.",
-        mainImage: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764208014/24A5795_scntg1.webp",
-        galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764402677/591174871_1172813745054130_853516314962878981_n_bozwr0.jpg", caption: "On the wrist with Toshi." }
+        mainImage: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764208014/24A5795_scntg1.webp"),
+        galleryImage: { src: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764402677/591174871_1172813745054130_853516314962878981_n_bozwr0.jpg"), caption: "On the wrist with Toshi." }
       },
       {
         brand: "Seiko",
         model: "Prospex Alpinist SPB121 (brand new)",
         purchaseLocation: "Acquired at Haneda Airport, Tokyo",
-        story: "This watch was a late-2024 purchase, right at the end of my first year at TikTok. We were in Japan to celebrate my wife’s new job with our best friends during the peak of late autumn. Another excuse to visit Japan? Absolutely. I had my heart set on a Grand Seiko GMT SBGM221, but luck wasn’t on my side and I couldn’t find one in stock. Then, just as we were about to board our flight at Haneda, this Alpinist suddenly caught my eye...",
-        reason: "I was drawn to the Alpinist’s character - the rich green dial, warm gold markers, and brown leather strap evoke the feeling of well-worn trail maps and quiet mountain mornings, the same calm beauty I find in the forests and trails of my home in the Pacific Northwest.",
-        mainImage: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764212614/post_7_10441_q0n0ax.jpg",
-        galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764232727/fd500a3e-b0e9-404d-b909-39bb59f270e9_vxwsom.jpg", caption: "On the wrist with Toro." }
+        story: "This watch was a late-2024 purchase, right at the end of my first year at TikTok. We were in Japan to celebrate my wife's new job with our best friends during the peak of late autumn. Another excuse to visit Japan? Absolutely. I had my heart set on a Grand Seiko GMT SBGM221, but luck wasn't on my side and I couldn't find one in stock. Then, just as we were about to board our flight at Haneda, this Alpinist suddenly caught my eye...",
+        reason: "I was drawn to the Alpinist's character - the rich green dial, warm gold markers, and brown leather strap evoke the feeling of well-worn trail maps and quiet mountain mornings, the same calm beauty I find in the forests and trails of my home in the Pacific Northwest.",
+        mainImage: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764212614/post_7_10441_q0n0ax.jpg"),
+        galleryImage: { src: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764232727/fd500a3e-b0e9-404d-b909-39bb59f270e9_vxwsom.jpg"), caption: "On the wrist with Toro." }
       }
     ],
     caseStudyData: {
@@ -55,7 +61,7 @@ const projects: Project[] = [
     id: '3',
     title: 'Domino AI',
     category: 'MLOps',
-    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764139578/domino_ivfaiz.png',
+    image: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764139578/domino_ivfaiz.png'),
     year: '2023',
     description: 'Managing environments on Domino AI Platform. A deep dive into the needs of data scientists.',
     watches: [
@@ -65,8 +71,8 @@ const projects: Project[] = [
         purchaseLocation: "Acquired in Kyoto",
         story: "My first vintage luxury watch - and my first timepiece purchased in Japan, a country that truly celebrates vintage craft. I found this 1961 Oyster Perpetual as I was wrapping up my time at Domino AI and preparing for a big move to TikTok in 2023 - the same year ChatGPT ignited the modern AI revolution. A timeless watch marking a turning point in a very fast-moving year.",
         reason: "I picked up this Oyster Perpetual knowing it was made in 1961 - the same year my dad was born. There’s something grounding about wearing a watch that has quietly ticked through the same decades he has. Its clean, understated dial and gentle patina feel less like “vintage character” and more like time itself, carried forward in a way that reminds me of where my story began.",
-        mainImage: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764211178/0014-54823_pnyxfq.webp",
-        galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764214645/cbee3c64-4c0c-4df4-9259-83d305593faf_ikyye0.jpg", caption: "On the wrist with baby Tofu." }
+        mainImage: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764211178/0014-54823_pnyxfq.webp"),
+        galleryImage: { src: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764214645/cbee3c64-4c0c-4df4-9259-83d305593faf_ikyye0.jpg"), caption: "On the wrist with baby Tofu." }
       }
     ],
     caseStudyData: {
@@ -122,22 +128,22 @@ const projects: Project[] = [
             }
           ]
         },
-        // 15 Placeholder Images
-        { id: 'gallery-1', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764237937/new-global-environments_mba5rn.png', caption: 'Environments landing page' },
-        { id: 'gallery-2', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238120/new-filter-environments-1_dswhye.png', caption: 'Filter environments' },
-        { id: 'gallery-3', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238121/new-filter-environments-2_gc8ycs.png', caption: 'Filter environments' },
-        { id: 'gallery-4', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238120/new-filter-environments-10_njxrkw.png', caption: 'Filter environments' },
-        { id: 'gallery-5', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238120/new-filter-environments-applied_dvzok0.png', caption: 'Filter environments' },
-        { id: 'gallery-6', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238295/new-environment-quick-view-1_srdse4.png', caption: 'Environments quick view' },
-        { id: 'gallery-7', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238295/new-environment-quick-view-2_e4a9ei.png', caption: 'Environments quick view' },
-        { id: 'gallery-8', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238585/new-create-environment-2_rnzcnn.png', caption: 'Create environment workflow' },
-        { id: 'gallery-9', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238585/new-create-environment-4_hfpflt.png', caption: 'Create environment workflow' },
-        { id: 'gallery-10', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238586/new-create-environment-5_gxdxuw.png', caption: 'Create environment workflow' },
-        { id: 'gallery-11', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238586/new-create-environment-7_rhqvfa.png', caption: 'Create environment workflow' },
-        { id: 'gallery-12', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238586/new-create-environment-11_dtx171.png', caption: 'Create environment workflow' },
-        { id: 'gallery-13', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238587/new-create-environment-10_bi3pmu.png', caption: 'Create environment workflow' },
-        { id: 'gallery-14', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238587/new-create-environment-13_gyjqdf.png', caption: 'Create environment workflow' },
-        { id: 'gallery-15', type: 'image', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764238491/new-global-environment-details-created_blk3oa.png', caption: 'New environment created' },
+        // 15 Placeholder Images - with Cloudinary optimization
+        { id: 'gallery-1', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764237937/new-global-environments_mba5rn.png'), caption: 'Environments landing page' },
+        { id: 'gallery-2', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238120/new-filter-environments-1_dswhye.png'), caption: 'Filter environments' },
+        { id: 'gallery-3', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238121/new-filter-environments-2_gc8ycs.png'), caption: 'Filter environments' },
+        { id: 'gallery-4', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238120/new-filter-environments-10_njxrkw.png'), caption: 'Filter environments' },
+        { id: 'gallery-5', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238120/new-filter-environments-applied_dvzok0.png'), caption: 'Filter environments' },
+        { id: 'gallery-6', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238295/new-environment-quick-view-1_srdse4.png'), caption: 'Environments quick view' },
+        { id: 'gallery-7', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238295/new-environment-quick-view-2_e4a9ei.png'), caption: 'Environments quick view' },
+        { id: 'gallery-8', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238585/new-create-environment-2_rnzcnn.png'), caption: 'Create environment workflow' },
+        { id: 'gallery-9', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238585/new-create-environment-4_hfpflt.png'), caption: 'Create environment workflow' },
+        { id: 'gallery-10', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238586/new-create-environment-5_gxdxuw.png'), caption: 'Create environment workflow' },
+        { id: 'gallery-11', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238586/new-create-environment-7_rhqvfa.png'), caption: 'Create environment workflow' },
+        { id: 'gallery-12', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238586/new-create-environment-11_dtx171.png'), caption: 'Create environment workflow' },
+        { id: 'gallery-13', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238587/new-create-environment-10_bi3pmu.png'), caption: 'Create environment workflow' },
+        { id: 'gallery-14', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238587/new-create-environment-13_gyjqdf.png'), caption: 'Create environment workflow' },
+        { id: 'gallery-15', type: 'image', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764238491/new-global-environment-details-created_blk3oa.png'), caption: 'New environment created' },
 
         {
           id: 'impact',
@@ -165,7 +171,7 @@ const projects: Project[] = [
     id: '2',
     title: 'Salesforce',
     category: 'Network Monitoring & Observability',
-    image: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764132665/salesforce_zftcfi.png',
+    image: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764132665/salesforce_zftcfi.png'),
     year: '2022',
     description: "Mulesoft's next-gen network monitoring experience. Simplifying complex topologies for DevOps engineers.",
     watches: [
@@ -175,8 +181,8 @@ const projects: Project[] = [
         purchaseLocation: "Acquired in Seattle, WA",
         story: "My first serious watch, bought as a wedding gift to myself. In 2022, Vietnam finally reopened after years of Covid lockdown, and I was grateful that my entire family stayed healthy. After so many delays, we finally got to have our wedding - and the Black Bay 58 became the watch that captured that moment.",
         reason: "I was drawn to its identity as a dive watch - the shimmering blue dial, classic bezel design, and the dependable, pressure-tested mechanics echo the depth and stillness of the ocean, one of my first loves in life.",
-        mainImage: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764212522/Tudor-Black-Bay-58-Navy-Blue-by-WatchGecko7_txipxg.webp",
-        galleryImage: { src: "https://res.cloudinary.com/dcc0zasye/image/upload/v1764212396/IMG_6516_vv5roy.jpg", caption: "On the wrist for one of the most important days of my life." }
+        mainImage: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764212522/Tudor-Black-Bay-58-Navy-Blue-by-WatchGecko7_txipxg.webp"),
+        galleryImage: { src: optimizeCloudinaryUrl("https://res.cloudinary.com/dcc0zasye/image/upload/v1764212396/IMG_6516_vv5roy.jpg"), caption: "On the wrist for one of the most important days of my life." }
       }
     ],
     caseStudyData: {
@@ -215,7 +221,7 @@ const projects: Project[] = [
         {
           id: 'problem-visual',
           type: 'image',
-          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764403284/no-traces_hxqlz1.png',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764403284/no-traces_hxqlz1.png'),
           imageStyle: 'full',
           caption: 'Current state - no traces data available for troubleshooting'
         },
@@ -254,14 +260,14 @@ const projects: Project[] = [
         {
           id: 'deliverables-journey',
           type: 'image',
-          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764405902/journey_n7vctk.png',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764405902/journey_n7vctk.png'),
           imageStyle: 'full',
           caption: 'Cross-persona E2E journey map'
         },
         {
           id: 'deliverables-storyboard',
           type: 'image',
-          src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764404699/storyboard_u99fs5.png',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764404699/storyboard_u99fs5.png'),
           imageStyle: 'full',
           caption: 'Scenario storyboards'
         },
@@ -299,15 +305,15 @@ const projects: Project[] = [
             }
           ]
         },
-        // 9 Placeholder Images
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764312066/sfanypoint_1_oednsd.png', caption: 'Network dashboard' },
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373091/sfanypoint_22_rcmhbr.png', caption: 'Network dashboard query filters' },
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6_idlv1p.png', caption: 'Entity details - Landing' },
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6-1_vhcczk.png', caption: 'Metric quick preview' },
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6-2_f74yqg.png', caption: 'Entity details - More metrics' },
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7-1_rj7twz.png', caption: 'Entity details - Traces' },
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7-2_x7dy6h.png', caption: 'Trace preview' },
-        { id: 'gallery-1', type: 'image', imageStyle: 'full', src: 'https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7_czefz6.png', caption: 'Entity details - Logs' },
+        // 8 Gallery Images - with Cloudinary optimization
+        { id: 'sf-gallery-1', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764312066/sfanypoint_1_oednsd.png'), caption: 'Network dashboard' },
+        { id: 'sf-gallery-2', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764373091/sfanypoint_22_rcmhbr.png'), caption: 'Network dashboard query filters' },
+        { id: 'sf-gallery-3', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6_idlv1p.png'), caption: 'Entity details - Landing' },
+        { id: 'sf-gallery-4', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6-1_vhcczk.png'), caption: 'Metric quick preview' },
+        { id: 'sf-gallery-5', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_6-2_f74yqg.png'), caption: 'Entity details - More metrics' },
+        { id: 'sf-gallery-6', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7-1_rj7twz.png'), caption: 'Entity details - Traces' },
+        { id: 'sf-gallery-7', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7-2_x7dy6h.png'), caption: 'Trace preview' },
+        { id: 'sf-gallery-8', type: 'image', imageStyle: 'full', src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764373090/sfanypoint_7_czefz6.png'), caption: 'Entity details - Logs' },
         {
           id: 'impact',
           type: 'stats',
@@ -509,14 +515,16 @@ const WatchDrawer: React.FC<{
   );
 };
 
-// Individual Project Component
-const ProjectItem: React.FC<{
+// Individual Project Component - Memoized to prevent unnecessary re-renders
+interface ProjectItemProps {
   project: Project;
   index: number;
   onCaseStudyClick: (p: Project) => void;
   onWatchClick: (p: Project) => void;
   setHoveredProject: (id: string | null) => void;
-}> = ({ project, index, onCaseStudyClick, onWatchClick, setHoveredProject }) => {
+}
+
+const ProjectItem = memo<ProjectItemProps>(({ project, index, onCaseStudyClick, onWatchClick, setHoveredProject }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isWatchHovered, setIsWatchHovered] = useState(false);
 
@@ -608,11 +616,24 @@ const ProjectItem: React.FC<{
       </motion.div>
     </div>
   );
-};
+}, (prevProps, nextProps) => {
+  // Custom comparison - only re-render if project data changes
+  return prevProps.project.id === nextProps.project.id &&
+         prevProps.index === nextProps.index;
+});
 
 const Projects: React.FC<ProjectsProps> = ({ onCaseStudyClick }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [selectedWatchProject, setSelectedWatchProject] = useState<Project | null>(null);
+
+  // Memoize callbacks to prevent unnecessary re-renders of ProjectItem
+  const handleSetHoveredProject = useCallback((id: string | null) => {
+    setHoveredProject(id);
+  }, []);
+
+  const handleWatchClick = useCallback((p: Project) => {
+    setSelectedWatchProject(p);
+  }, []);
 
   return (
     <section id="work" className="py-24 md:py-40 bg-transparent relative z-10">
@@ -638,8 +659,8 @@ const Projects: React.FC<ProjectsProps> = ({ onCaseStudyClick }) => {
               project={project}
               index={index}
               onCaseStudyClick={onCaseStudyClick}
-              onWatchClick={(p) => setSelectedWatchProject(p)}
-              setHoveredProject={setHoveredProject}
+              onWatchClick={handleWatchClick}
+              setHoveredProject={handleSetHoveredProject}
             />
           ))}
         </div>
