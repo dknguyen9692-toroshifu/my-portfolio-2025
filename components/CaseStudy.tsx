@@ -76,26 +76,28 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
         if (isTall) aspectRatioClass = 'aspect-[4/3]';
 
         return (
-          <motion.div
+          <motion.figure
             key={block.id}
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={`rounded-xl overflow-hidden bg-surface relative mb-12 -mt-6 ${aspectRatioClass}`}
+            className="mb-12 -mt-6"
           >
-            <img
-              src={block.src}
-              alt={block.alt || 'Case study detail'}
-              className={`w-full ${isFullHeight ? 'h-auto' : 'h-full object-cover object-top'}`}
-              loading="lazy"
-            />
+            <div className={`rounded-xl overflow-hidden bg-surface ${aspectRatioClass}`}>
+              <img
+                src={block.src}
+                alt={block.alt || 'Case study detail'}
+                className={`w-full ${isFullHeight ? 'h-auto' : 'h-full object-cover object-top'}`}
+                loading="lazy"
+              />
+            </div>
             {block.caption && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-white/70 text-xs uppercase tracking-widest">{block.caption}</p>
-              </div>
+              <figcaption className="mt-4 text-secondary text-xs uppercase tracking-widest">
+                {block.caption}
+              </figcaption>
             )}
-          </motion.div>
+          </motion.figure>
         );
 
       case 'list':
@@ -237,8 +239,8 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, onBack }) => {
                 </p>
               )}
               {block.items.map((item, idx) => (
-                <div key={idx} className="border-l-2 border-blue-500/50 pl-6 md:pl-8 py-2">
-                  <blockquote className="text-2xl md:text-3xl text-blue-400 font-bold mb-4 font-serif leading-tight">
+                <div key={idx} className="border-l-2 border-teal-500/50 pl-6 md:pl-8 py-2">
+                  <blockquote className="text-2xl md:text-3xl text-teal-400 font-bold mb-4 font-serif leading-tight">
                     {item.quote}
                   </blockquote>
                   <p className="text-lg text-secondary/90 leading-relaxed italic">

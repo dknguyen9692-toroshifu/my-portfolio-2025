@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
 const experiences = [
-  { role: "Staff product designer", company: "TikTok", period: "Feb 2024 - Present" },
+  { role: "Principal product designer", company: "Microsoft AI", period: "Jan 2026 - Present" },
+  { role: "Staff product designer", company: "TikTok", period: "Feb 2024 - Jan 2026" },
   { role: "Lead product designer", company: "Domino AI", period: "Mar 2023 - Feb 2024" },
   { role: "Lead product designer", company: "Salesforce", period: "Sep 2021 - Feb 2024" },
   { role: "Sr. product designer", company: "Oracle Cloud", period: "Aug 2017 - Sep 2021" },
@@ -41,7 +42,7 @@ const About: React.FC = () => {
                 I’m a Seattle-based product designer who loves solving complex problems (and occasionally perfecting an Amaretto recipe).
               </p>
               <p className="text-lg md:text-xl text-secondary leading-relaxed font-light">
-                <span className="text-white">I currently lead AI design for TikTok’s internal CRM platform, and previously worked at Domino AI, Mulesoft/Salesforce, and Oracle Cloud Infrastructure.</span> My work spans cloud computing, DevOps, AI/ML, and digital ads. It wasn't my intention, but this journey had nurtured in me a passion to solve UX problems typically characterized by technical complexities.
+                <span className="text-white">I currently lead design for Microsoft Advertising’s internal CRM platform, and previously worked at TikTok, Domino AI, Mulesoft/Salesforce, and Oracle Cloud Infrastructure.</span> My work spans cloud computing, DevOps, AI/ML, and digital ads. It wasn't my intention, but this journey had nurtured in me a passion to solve UX problems typically characterized by technical complexities.
               </p>
             </motion.div>
 
@@ -71,7 +72,7 @@ const About: React.FC = () => {
 
                 <div className="mt-16">
                   <a
-                    href="https://drive.google.com/file/d/13CJxZeaxI_J2mftxnMCb6Avw0kR5L2Jk/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1bclHamnnNU7RgsoLQsFguTb7aA5hBz9D/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 px-8 py-3 border border-white/20 rounded-full text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 group"

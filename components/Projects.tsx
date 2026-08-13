@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect, memo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Watch, X, MapPin, Camera, EyeOff, Wrench, FileText, Map, Flag, Activity, GitMerge, Search } from 'lucide-react';
+import { ArrowUpRight, Watch, X, MapPin, Camera, EyeOff, Wrench, FileText, Map, Flag, Activity, GitMerge, Search, Sparkles, Users, LifeBuoy, TrendingUp, GraduationCap, BarChart3, Compass, Code, MessageSquare, Ruler } from 'lucide-react';
 import { Project, WatchStory } from '../types';
 
 // Cloudinary URL helper for optimized images
@@ -20,7 +20,7 @@ const projects: Project[] = [
     image: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1764132458/tiktok_qjyhje.png'),
     year: '2025',
     watchYear: '2024-2025',
-    description: "Bringing agentic AI to the finger tips of TikTok's global sales teams (coming soon).",
+    description: "Bringing agentic AI to the fingertips of TikTok's global sales teams.",
     watches: [
       {
         brand: "Rolex",
@@ -43,15 +43,328 @@ const projects: Project[] = [
     ],
     caseStudyData: {
       role: "Product design, Model design, Design strategy",
-      product: "TikTok's internal CRM",
+      product: "TikTok's internal CRM (SalesAlly)",
       team: "Design, PM, PMM, AI & Software Eng",
       content: [
         {
-          id: 'coming-soon',
+          id: 'overview',
           type: 'text',
-          title: 'Coming Soon',
+          title: 'Overview',
           paragraphs: [
-            "This case study is currently under development. Please stay tuned for the full story!",
+            "Internally called **3M – \"Make More Money\"**, TikTok's CRM is the platform that powers roughly **3,000 global sellers and sales leaders** every day. It's where commercial teams manage accounts, monitor campaign performance, and plan the next quarter of growth.",
+            "In early 2025, I joined the CRM AI initiative as the *lead designer* for the vision, strategy, and MVP of TikTok's first flagship CRM AI Copilot – **SalesAlly**. Alongside 2 PMs, 2 PMMs, 3 AI engineers, and 8 software engineers, we shipped the 1.0 experience in roughly **three months**.",
+            "This is the story of how the product went from *\"3M is a data graveyard\"* to *\"SalesAlly feels like having a really smart teammate.\"*"
+          ]
+        },
+        {
+          id: 'problems',
+          type: 'list',
+          title: 'The problems we set out to solve',
+          style: 'cards',
+          intro: "Before SalesAlly, three problems kept surfacing in every seller conversation:",
+          items: [
+            {
+              label: "Sales inefficiency.",
+              description: "Fragmented tools and manual processes delayed insight access, slowing pitch prep and eroding seller confidence.",
+              icon: <Wrench size={24} />
+            },
+            {
+              label: "Lack of strategic context.",
+              description: "Insights lived in silos, without the strategic framing sellers needed to position TikTok and spot upsell opportunities.",
+              icon: <EyeOff size={24} />
+            },
+            {
+              label: "No team performance visibility.",
+              description: "Sales leaders lacked a clear view into team performance, forcing reactive coaching instead of proactive management.",
+              icon: <Activity size={24} />
+            }
+          ],
+          conclusion: "One user summed it up bluntly: *\u201c3M is a data graveyard.\u201d* That quote became the north star for the work."
+        },
+        {
+          id: 'opportunity',
+          type: 'text',
+          title: 'Market forces & opportunity',
+          paragraphs: [
+            "The sales enablement market is projected to grow at a **16.4% CAGR through 2035**, and the explosion of AI in enterprise tech is fundamentally reshaping how sellers work.",
+            "TikTok had two unfair advantages to build on: **proprietary data** \u2013 the depth of first-party signals already inside 3M \u2013 and **compliance and security** \u2013 a mature foundation external AI tools simply couldn't match. Moving fast meant turning TikTok's biggest liability (data sprawl) into its strongest moat."
+          ]
+        },
+        {
+          id: 'vision',
+          type: 'text',
+          title: 'The vision',
+          paragraphs: [
+            "The vision framed AI not as a shortcut, but as a **force multiplier for the human craft of selling**. That framing shaped every downstream decision \u2013 from feature scope, to model behavior, to how the chat responses were designed."
+          ]
+        },
+        {
+          id: 'vision-visual',
+          type: 'image',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1786660537/slide-012_bdzixv.png'),
+          imageStyle: 'full',
+          caption: 'The 2026 vision – an AI partner that amplifies every seller\u2019s relationship-building superpowers.'
+        },
+        {
+          id: 'superpowers',
+          type: 'list',
+          title: 'One AI assistant, six superpowers',
+          style: 'cards',
+          intro: "We mapped the full end-to-end Sales IC journey and identified six areas where a copilot could compound seller impact:",
+          items: [
+            {
+              label: "Outreach.",
+              description: "AI-powered SDR: personalized email generation, cold-call scripts, and follow-up optimization.",
+              icon: <Sparkles size={24} />
+            },
+            {
+              label: "Client meeting assistance.",
+              description: "Pre-meeting briefs, in-meeting nudges, and post-meeting summaries \u2013 so sellers walk in prepared and walk out with next steps.",
+              icon: <Users size={24} />
+            },
+            {
+              label: "Support & oncall.",
+              description: "An always-on helpdesk for sales workflows, tooling questions, and policy lookups.",
+              icon: <LifeBuoy size={24} />
+            },
+            {
+              label: "Sales performance management.",
+              description: "Team-level visibility, forecast diagnostics, and drill-downs for leaders to coach proactively.",
+              icon: <TrendingUp size={24} />
+            },
+            {
+              label: "Sales coach.",
+              description: "Personalized coaching based on top-performer patterns and each seller's own history.",
+              icon: <GraduationCap size={24} />
+            },
+            {
+              label: "Data reporting.",
+              description: "Natural-language reporting on revenue, pipeline, and account health \u2013 no more dashboard-hopping.",
+              icon: <BarChart3 size={24} />
+            }
+          ]
+        },
+        {
+
+          id: 'phase-1-strategy',
+          type: 'text',
+          title: 'Phase 1: A fast foundation',
+          paragraphs: [
+            "Six superpowers is a two-year story. To earn trust and momentum, we needed a **Phase 1 that shipped fast and felt useful on day one.**",
+            "My strategy was to lead with a flagship **conversational copilot (SalesAlly)** \u2013 a single, unified surface where sellers could ask anything about their book of business \u2013 then complement it with **in-context AI features** wired directly into the existing 3M pages (Client 360, Sales Plans & Forecasts, Pitch Planner). We deliberately leaned on the existing AI design system to keep engineering focused on the reasoning quality, not the pixels."
+          ]
+        },
+        {
+          id: 'surface',
+          type: 'text',
+          title: 'Designing the Surface',
+          paragraphs: [
+            "The **Surface** is what sellers see and touch: the SalesAlly chat panel, the embedded assistant in Client 360, and the in-context *Ask AI / Diagnose / Drill-down / Summarize* actions on every revenue widget.",
+            "We treated SalesAlly as a *teammate, not a tool.* That meant an opinionated welcome state with suggested prompts, streamed \u201canalyzing \u2192 reading references \u2192 generating response\u201d states to make the reasoning visible, inline references with source attribution on every claim, and one-tap actions to *iterate, expand, refine, or export* any response into a report, email, or meeting doc."
+          ]
+        },
+        {
+          id: 'surface-visual-hero',
+          type: 'image',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1786660537/slide-005_ww1ecs.png'),
+          imageStyle: 'full',
+          caption: 'SalesAlly summarizing revenue performance in-context, alongside quick actions (Diagnose, Drill-down, Ask AI, Summarize) on every revenue widget.'
+        },
+        {
+          id: 'surface-visual-client-360',
+          type: 'image',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1786660537/slide-022_yvnmhy.png'),
+          imageStyle: 'full',
+          caption: 'In-context AI: an “Ask AI about this account” entry point right on the Client 360 header, opening a SalesAlly panel pre-scoped to the account.'
+        },
+        {
+          id: 'surface-visual-states',
+          type: 'image',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1786660537/slide-023_uvs67g.png'),
+          imageStyle: 'full',
+          caption: 'Response states: welcome with suggested prompts → streamed reasoning with reference reading → structured response with citations → one-tap hand-off to the right editor.'
+        },
+        {
+          id: 'substrate-intro',
+          type: 'text',
+          title: 'The AI designer\u2019s new canvas',
+          paragraphs: [
+            "The biggest shift in my practice was realizing shipping a great AI product is not a surface problem. Borrowing a concept from **Suff Syed**, we designed the **Substrate** \u2013 the reasoning layer beneath the UI \u2013 as deliberately as we designed the pixels.",
+            "**AI designers have the responsibility to shape the reasoning substrate so the surface can be trusted.** That principle rewired how the design, PM, and AI engineering pod worked together."
+          ]
+        },
+        {
+          id: 'substrate-visual',
+          type: 'image',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1786660537/slide-031_r2eqwe.png'),
+          imageStyle: 'full',
+          caption: 'Surface vs. Substrate – what users see, and the reasoning layer designers now shape to create trust. (Concept from Suff Syed.)'
+        },
+        {
+          id: 'substrate-artifacts',
+          type: 'list',
+          style: 'cards',
+          intro: "In practice, these are the five artifacts I owned or co-authored for every SalesAlly capability:",
+          items: [
+            {
+              label: "Intent matrix.",
+              description: "A map of every job-to-be-done a seller might bring to SalesAlly, and which capability should respond.",
+              icon: <Compass size={24} />
+            },
+            {
+              label: "JSON schema.",
+              description: "The structured contract between model and UI, so responses render predictably as summaries, tables, charts, or step-by-steps.",
+              icon: <Code size={24} />
+            },
+            {
+              label: "Markdown template.",
+              description: "The response skeleton \u2013 headings, bullets, references, calls-to-action \u2013 that shapes how insight lands with the reader.",
+              icon: <FileText size={24} />
+            },
+            {
+              label: "Prompt spec.",
+              description: "The system prompt and instructions that anchor tone, guardrails, and how SalesAlly reasons about ambiguous asks.",
+              icon: <MessageSquare size={24} />
+            },
+            {
+              label: "Eval rubric.",
+              description: "The quantitative and qualitative dimensions \u2013 accuracy, clarity, actionability, trust \u2013 we grade every response against, release after release.",
+              icon: <Ruler size={24} />
+            }
+          ]
+        },
+        {
+          id: 'principles',
+          type: 'list',
+          title: 'Guiding principles',
+          intro: "Three principles guided every design and model decision:",
+          items: [
+            "**Adaptability** \u2013 SalesAlly should meet sellers where they are, from a quick data lookup to a full account strategy.",
+            "**Transparency** \u2013 Every response shows its work: the references it read, the confidence it has, and how the user can push back.",
+            "**Trust by design** \u2013 Guardrails, disclaimers, and eval rubrics ship *with* the feature, not bolted on after launch."
+          ]
+        },
+        {
+          id: 'launch',
+          type: 'text',
+          title: 'Launch',
+          paragraphs: [
+            "SalesAlly 1.0 shipped in **September 2025** to all global sales regions and verticals \u2013 on time, and against the primary OKR of *\u226575% global adoption in one quarter.*"
+          ]
+        },
+        {
+          id: 'impact',
+          type: 'stats',
+          title: 'Post-launch impact',
+          intro: "The Phase 1 launch beat every product KPI we set, and moved the needle on the workflows that mattered most:",
+          items: [
+            {
+              value: "~52%",
+              label: "Time savings on critical sales workflows",
+              category: "Business",
+              trend: 'up'
+            },
+            {
+              value: "~80%",
+              label: "SalesAlly global adoption",
+              category: "Product",
+              trend: 'up'
+            },
+            {
+              value: "~89%",
+              label: "SalesAlly global retention",
+              category: "Product",
+              trend: 'up'
+            },
+            {
+              value: "4.8",
+              label: "Avg. CSAT across AI features",
+              category: "Experience"
+            }
+          ],
+          conclusion: "Underneath the headline numbers, engagement stayed remarkably sticky: **~4 active days per user per week**, **~8 queries per user per week**, and a low **~16% regeneration rate** \u2013 sellers were getting a usable answer on the first try."
+        },
+        {
+          id: 'ux-perception',
+          type: 'stats',
+          title: 'UX perception & actionability',
+          intro: "We also tracked how SalesAlly *felt* to use, not just how often it was used:",
+          items: [
+            {
+              value: "4.6 / 5",
+              label: "Trust rating",
+              category: "Experience"
+            },
+            {
+              value: "4.8 / 5",
+              label: "Clarity rating",
+              category: "Experience"
+            },
+            {
+              value: "4.8 / 5",
+              label: "Actionability rating",
+              category: "Experience"
+            },
+            {
+              value: "~62% / ~54%",
+              label: "Response copy & export rate (target 50%)",
+              category: "Product",
+              trend: 'up'
+            }
+          ],
+          conclusion: "The one lowlight the team was actively working on: **time-to-value averaged ~160 seconds**, above the \u226490-second target. Streaming and faster tool-calls were flagged as the next big investments."
+        },
+        {
+          id: 'validation',
+          type: 'testimonial',
+          title: 'Qualitative validation',
+          intro: "Numbers tell one story; sellers tell the better one:",
+          items: [
+            {
+              quote: "\u201cSalesAlly feels like having a really smart teammate...",
+              body: "...it surfaces the right insights exactly when I need them, saving hours of manual digging.\u201d"
+            },
+            {
+              quote: "\u201cInstead of switching between five dashboards...",
+              body: "...I can just ask SalesAlly a question and get the full picture instantly. It\u2019s completely changed how I prep for client meetings.\u201d"
+            },
+            {
+              quote: "\u201cWhat used to take half a day of analysis now takes minutes...",
+              body: "...SalesAlly helps me focus on strategy and relationships instead of spreadsheets.\u201d"
+            }
+          ]
+        },
+        {
+          id: 'whats-next',
+          type: 'text',
+          title: 'What\u2019s next',
+          paragraphs: [
+            "Phase 1 proved that a well-designed copilot could compress hours of work into minutes. Phase 2 was scoped to **mature SalesAlly from AI-assisted to AI-led** across every stage of the Sales IC journey \u2013 lead discovery, outreach, business monitoring, pitch planning, client engagement, and performance measurement."
+          ]
+        },
+        {
+          id: 'whats-next-visual',
+          type: 'image',
+          src: optimizeCloudinaryUrl('https://res.cloudinary.com/dcc0zasye/image/upload/v1786660537/slide-054_ojrzut.png'),
+          imageStyle: 'full',
+          captionStyle: 'dark',
+          caption: 'End-to-end Sales IC journey (2025 Q4) – the maturity model from limited AI → AI-assisted → AI-led across six stages of the sales cycle.'
+        },
+        {
+          id: 'whats-next-outlook',
+          type: 'text',
+          paragraphs: [
+            "At launch, most flows followed *AI suggests \u2192 human decides* and *AI drafts \u2192 human polishes.* Near-term, the roadmap called for *AI enhances materials \u2192 human approves;* long-term, an *AI-led model* where SalesAlly would handle routine execution end-to-end and humans would focus on judgment, relationships, and strategy.",
+            "The next bets we set on the roadmap: **CRM AI on mobile** (meet sellers in the field), and a **unified intelligence layer** to share memory, context, and preferences across every AI feature in 3M."
+          ]
+        },
+        {
+          id: 'learning',
+          type: 'text',
+          title: 'What I learned',
+          paragraphs: [
+            "The biggest shift in my craft from this project: **designing AI is designing the reasoning substrate, not just the surface.** The pixels are the easy part. The intent matrix, the prompt spec, the eval rubric \u2013 that\u2019s where trust is engineered, and that\u2019s where designers now sit at the same table as PMs and AI engineers.",
+            "SalesAlly also reminded me that a well-scoped Phase 1 is a strategy, not a compromise. Shipping something *useful and trusted* in three months bought us the runway \u2013 and the credibility \u2013 to go after the harder, agentic problems next."
           ]
         }
       ]

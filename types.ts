@@ -34,6 +34,7 @@ export interface ImageBlock extends BaseBlock {
   src: string;
   alt?: string;
   caption?: string;
+  captionStyle?: 'light' | 'dark';
   imageStyle?: 'default' | 'full' | 'tall'; // 'default' = aspect-video crop, 'full' = natural height, 'tall' = 4:3
 }
 
