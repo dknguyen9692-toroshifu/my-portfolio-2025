@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
   const y = useTransform(scrollY, [0, 400], [0, 100]);
 
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 relative overflow-hidden bg-transparent">
+    <section id="hero" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-28 pb-40 relative overflow-hidden bg-transparent">
       
       {/* Sound Wave Animation - High Intensity for Hero */}
       <SoundWave lineCount={80} opacity={0.6} speed={0.003} />
@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
             <span className="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">complex</span> stuff
           </h1>
           <p className="max-w-xl text-secondary text-lg md:text-xl leading-relaxed">
-            I love making sense out of technical systems and processes through the creation of delightful, intuitive, and functional experiences.
+            I love making sense of technical systems and processes through delightful, intuitive, and functional experiences. Currently at <span className="text-primary">Microsoft AI</span>, designing and shipping UI with AI.
           </p>
         </motion.div>
       </div>

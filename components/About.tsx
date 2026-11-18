@@ -41,8 +41,11 @@ const About: React.FC = () => {
               <p className="text-lg md:text-xl text-secondary leading-relaxed mb-8 font-light">
                 I’m a Seattle-based product designer who loves solving complex problems (and occasionally perfecting an Amaretto recipe).
               </p>
+              <p className="text-lg md:text-xl text-secondary leading-relaxed mb-8 font-light">
+                <span className="text-white">At Microsoft AI, I’m exploring a more hands-on intersection of design and engineering.</span> Alongside leading design for Microsoft Advertising’s internal CRM, I ship production UI with AI and partner with engineers to build the tools and guardrails that keep it aligned with engineering standards and our design system.
+              </p>
               <p className="text-lg md:text-xl text-secondary leading-relaxed font-light">
-                <span className="text-white">I currently lead design for Microsoft Advertising’s internal CRM platform, and previously worked at TikTok, Domino AI, Mulesoft/Salesforce, and Oracle Cloud Infrastructure.</span> My work spans cloud computing, DevOps, AI/ML, and digital ads. It wasn't my intention, but this journey had nurtured in me a passion to solve UX problems typically characterized by technical complexities.
+                Previously, I worked at TikTok, Domino AI, Mulesoft/Salesforce, and Oracle Cloud Infrastructure. My work spans cloud computing, DevOps, AI/ML, and digital ads. It wasn't my intention, but this journey had nurtured in me a passion to solve UX problems typically characterized by technical complexities.
               </p>
             </motion.div>
 
